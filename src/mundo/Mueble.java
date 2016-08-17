@@ -11,6 +11,7 @@
 
 package mundo;
 import anotaciones.Init;
+import anotaciones.Log;
 import anotaciones.PostConstructor;
 
 /**
@@ -42,6 +43,7 @@ public class Mueble {
         this.id = id;
     }
 
+    @Log
     public String getNombre() {
         return nombre;
     }
