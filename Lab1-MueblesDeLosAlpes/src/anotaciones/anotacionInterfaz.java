@@ -19,8 +19,8 @@ import java.lang.annotation.*;
  * Sebastian Cardona Correa
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface PostConstructor {
+@Target(ElementType.TYPE)
+public @interface anotacionInterfaz {
     
     String String() default "";
     double Double() default 0.0;

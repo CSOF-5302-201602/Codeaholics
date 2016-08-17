@@ -16,7 +16,7 @@ import anotaciones.PostConstructor;
 /**
  * Punto de entrada a la capa de logica de negocio
  */
-public class MueblesLosAlpes {
+public class MueblesLosAlpes implements puntod{
 
     /**
      * Manajador de la lista de muebles
@@ -63,6 +63,10 @@ public class MueblesLosAlpes {
       @PostConstructor
     public void despuesDelConstructor(){
         System.out.println("Despues del constructor");
+    }
+
+    public void imprimir() {
+        System.out.println(" Imprimio en MueblesLosAlpes");
     }
     
 }
