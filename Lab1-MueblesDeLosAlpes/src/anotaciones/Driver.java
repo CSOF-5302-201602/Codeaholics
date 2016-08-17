@@ -257,6 +257,12 @@ public class Driver
                 CodigoInserciones.Init(objeto,c,c.getAnnotation(Init.class),null);
             }
             
+            // Se verifica si la clase tiene la anotación Log
+            if(c.isAnnotationPresent(Log.class)){
+                // Se inicializan los atributos afectador por las anotaciones Init
+                Logger.Log("00/00/2016 1:00", c);
+            }
+            
             for (Field f : c.getDeclaredFields()) {
                 // Se instancian los atributos anotados con Cargar
                 if (f.isAnnotationPresent(Cargar.class)) {
