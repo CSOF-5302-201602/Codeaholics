@@ -242,7 +242,7 @@ public class Driver
 
               // Se verifica si la clase tiene la anotación Init
             
-            int numeromMetodos = c.getMethods().length;
+             int numeromMetodos = c.getMethods().length;
             Method[] metodos = c.getMethods();
                         
             for(int i = 0; i < numeromMetodos; i++ )
@@ -258,6 +258,24 @@ public class Driver
                   
                 }
                 
+            }
+             
+            
+            int numeromInterfaces = c.getInterfaces().length;
+            Class[] interfaces = c.getInterfaces();
+            Class[] tiposInterface = implementacion.getInterfaces();
+            int numeromInterfacesTipo = tiposInterface.length;
+            
+            for(int i = 0; i < numeromInterfaces; i++ )
+            {  
+                for(int j = 0; j < numeromInterfacesTipo; j++ )
+                  {  
+                    Class interfaceTemporal= tiposInterface[j].getClass();
+                    if(interfaceTemporal.isAnnotationPresent(BuscarTipo.class) && interfaces[i].isInstance(tiposInterface[j]))
+                    {
+                        System.out.println("la clase implementa: " + tiposInterface[j].getSimpleName());
+                    }
+                  }         
             }
             
             // Se verifica si la clase tiene la anotación Init

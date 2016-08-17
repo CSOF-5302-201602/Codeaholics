@@ -11,6 +11,7 @@
 
 package mundo;
 import anotaciones.Init;
+import anotaciones.NoInit;
 import anotaciones.Log;
 import anotaciones.PostConstructor;
 
@@ -18,7 +19,7 @@ import anotaciones.PostConstructor;
  * Entidad que representa un mueble de MLA
  */
 @Init(String="",Double=0)
-public class Mueble {
+public class Mueble implements Prueba{
 
     /**
      * Nombre del mueble
@@ -28,6 +29,7 @@ public class Mueble {
     /**
      * Identificador del mueble, tiene que ser único
      */
+    @NoInit
     private int id;
 
     /**
@@ -67,6 +69,10 @@ public class Mueble {
     public void reiniciar(){
 
     }
+        
+    public void adios(){
+        System.out.println("Si");
+    };
     
     @PostConstructor
     public void hola(){

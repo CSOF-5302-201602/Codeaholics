@@ -14,8 +14,9 @@ import java.lang.annotation.Target;
  *
  * @author jl.rodriguez
  */
+
 @Retention(RetentionPolicy.RUNTIME)
-@Target(value={ElementType.TYPE,ElementType.METHOD})
-public @interface Log {
+@Target(value={ElementType.TYPE})
+public @interface BuscarTipo {
     
 }

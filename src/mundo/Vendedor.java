@@ -11,6 +11,7 @@
 package mundo;
 
 import anotaciones.Init;
+import anotaciones.NoInit;
 
 /**
  * Entidad que representa a un vendedor de MLA
@@ -22,6 +23,7 @@ public class Vendedor
     /**
      * Id del vendedor. Tiene que ser único.
      */
+    @NoInit
     private int id;
 
     /**
