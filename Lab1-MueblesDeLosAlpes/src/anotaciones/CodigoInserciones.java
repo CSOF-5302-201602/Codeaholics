@@ -77,4 +77,12 @@ public class CodigoInserciones
         }
     }
 
+    
+    /**
+     *Metodo invocado en la nsercion de código hecha a los métodos anotados con @PostConstructor
+     */
+    public static void PostConstructor() throws Exception {
+        System.out.println("Entro a PostConstructor de la clase CodigoInserciones");
+       
+    }
 }

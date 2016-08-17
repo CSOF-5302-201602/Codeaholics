@@ -11,6 +11,7 @@
 package mundo;
 
 import anotaciones.Cargar;
+import anotaciones.PostConstructor;
 
 /**
  * Punto de entrada a la capa de logica de negocio
@@ -59,6 +60,7 @@ public class MueblesLosAlpes {
     /**
      * Metodo de prueba de la anotación PostConstructor
      */
+      @PostConstructor
     public void despuesDelConstructor(){
         System.out.println("Despues del constructor");
     }

@@ -235,7 +235,22 @@ public class Driver
 
             // Se invoca el constructor
             Object objeto = constructor.newInstance();
+ //SCC           
+            for (Method f : c.getDeclaredMethods()) {
+                // Se verifica si la clase tiene la anotación despuesDelConstructor
+                if (f.isAnnotationPresent(PostConstructor.class)) {
+                    // Se inicializan los atributos afectador por las anotaciones Init
+                    CodigoInserciones.PostConstructor();
+                    try {
+                        System.out.println("Metodo " + f.getName());
+                        f.invoke(objeto, null);
 
+                    } catch (Exception e) {
+                        System.out.println("Error en Driver.java metodo instanciar");
+                    }
+                }
+
+            }
             // Se verifica si la clase tiene la anotación Init
             if(c.isAnnotationPresent(Init.class)){
                 // Se inicializan los atributos afectador por las anotaciones Init
