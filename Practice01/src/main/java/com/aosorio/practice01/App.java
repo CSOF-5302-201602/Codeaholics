@@ -9,6 +9,11 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Array;
 
+@interface MyAnno {
+    String str();
+    int val();
+}
+
 /**
  *
  * @author AOSORIO
@@ -115,7 +120,8 @@ class Foo {
     public Foo(String s) {
         this.message = s;
     }
-
+    
+    @MyAnno( str = "Annotation example", val=10)
     public void print() {
         if (message.isEmpty()) {
             System.out.println("abc");
