@@ -12,6 +12,7 @@ package anotaciones;
 
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -33,35 +34,45 @@ public class CodigoInserciones
     public static void Init(Object instance, Class claseRepresentada, Annotation annotacion, Method method) throws Exception {
         Init c = (Init) annotacion;
         for (Field f : claseRepresentada.getDeclaredFields()) {
-            try {
-                f.setAccessible(true);
-                if (f.getType().equals(Integer.TYPE))
+
+            System.out.println(f.isAnnotationPresent(NoInit.class));
+            if(f.isAnnotationPresent(NoInit.class)) {
+
+                System.out.println("Omitiendo la anotación Init");
+                try {
+
+                    f.setAccessible(true);
+                    if (f.getType().equals(Integer.TYPE))
+                    {
+                        f.set(instance, c.Integer());
+                    } else if (f.getType().equals(Double.TYPE))
+                    {
+                        f.set(instance, c.Double());
+                    } else if (f.getType().equals(Character.TYPE))
+                    {
+                        f.set(instance, c.Char());
+                    } else if (f.getType().equals(String.class))
+                    {
+                        f.set(instance, c.String());
+                    } else if (f.getType().equals(Boolean.TYPE))
+                    {
+                        f.set(instance, c.Boolean());
+                    } else if (f.getType().equals(Float.TYPE))
+                    {
+                        f.set(instance, c.Float());
+                    } else if (f.getType().equals(Long.TYPE))
+                    {
+                        f.set(instance, c.Long());
+                    }
+                }
+                catch (Exception e)
                 {
-                    f.set(instance, c.Integer());
-                } else if (f.getType().equals(Double.TYPE))
-                {
-                    f.set(instance, c.Double());
-                } else if (f.getType().equals(Character.TYPE))
-                {
-                    f.set(instance, c.Char());
-                } else if (f.getType().equals(String.class))
-                {
-                    f.set(instance, c.String());
-                } else if (f.getType().equals(Boolean.TYPE))
-                {
-                    f.set(instance, c.Boolean());
-                } else if (f.getType().equals(Float.TYPE))
-                {
-                    f.set(instance, c.Float());
-                } else if (f.getType().equals(Long.TYPE))
-                {
-                    f.set(instance, c.Long());
+                    throw new Exception(e.getMessage());
                 }
 
-            } 
-            catch (Exception e)
-            {
-                throw new Exception(e.getMessage());
+            } else {
+
+                System.out.println("Aplicando atributos de la anotación Init");
             }
         }
     }

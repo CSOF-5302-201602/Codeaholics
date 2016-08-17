@@ -11,6 +11,7 @@
 
 package mundo;
 import anotaciones.Init;
+import anotaciones.NoInit;
 
 /**
  * Entidad que representa un mueble de MLA
@@ -21,11 +22,13 @@ public class Mueble {
     /**
      * Nombre del mueble
      */
+    @NoInit()
     private String nombre;
 
     /**
      * Identificador del mueble, tiene que ser único
      */
+    @NoInit()
     private int id;
 
     /**
