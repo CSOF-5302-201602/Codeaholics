@@ -36,6 +36,13 @@ public class Driver {
     public static Class[] anotacionesInsercion = {Log.class, Init.class};
 
     /**
+     * AO: The contract sequence is the correct order to do method.invoke() -
+     * reflect API This is defined by two annotations in the Interface
+     * declaration
+     */
+    public static Class[] contractSequence = {RunBefore.class, RunAfter.class};
+
+    /**
      * Estructura encargada de contener las clases y sus proxys
      */
     private static Map<Class, Class> proxys = new TreeMap<Class, Class>(new Comparator<Class>() {
@@ -45,7 +52,6 @@ public class Driver {
         }
     });
 
-    
     /**
      * Permite saber si el método que se le pasa como parametro tiene
      * inyecciones de código o no
@@ -149,7 +155,6 @@ public class Driver {
                     if (tieneInyeccion(method) && !Modifier.isStatic(modifi)) {
                         // Se imprime la declaración del metodo
 
-                        
                         pw.print(Modifier.toString(modifi));
                         Class tipoRetorno = method.getReturnType();
                         pw.print(" " + tipoRetorno.getSimpleName());
@@ -266,6 +271,22 @@ public class Driver {
                     source.delete();
                     proxys.put(objetivo, objetivo);
                     return objetivo;
+                }
+
+            } else if (objetivo.isInterface()) {
+
+                for (Class exeMethod : contractSequence) {
+
+                    for (Method method : objetivo.getDeclaredMethods()) {
+                        
+                        if (method.isAnnotationPresent(exeMethod)) {
+                            
+                            //From the Reflection API one could ask for this method to be executed
+                            //method.invoke();
+                            
+                        }
+
+                    }
                 }
 
             } else {
