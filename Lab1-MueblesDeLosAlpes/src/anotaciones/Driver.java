@@ -45,9 +45,7 @@ public class Driver {
         }
     });
 
-    //AO: Metodos que requieren overriding
-    private static String[] overrideMethods = {"nuevoMueble"};
-
+    
     /**
      * Permite saber si el método que se le pasa como parametro tiene
      * inyecciones de código o no
@@ -151,9 +149,7 @@ public class Driver {
                     if (tieneInyeccion(method) && !Modifier.isStatic(modifi)) {
                         // Se imprime la declaración del metodo
 
-                        if (method.getName().equals(overrideMethods[0])) {
-                            pw.println("@Override");
-                        }
+                        
                         pw.print(Modifier.toString(modifi));
                         Class tipoRetorno = method.getReturnType();
                         pw.print(" " + tipoRetorno.getSimpleName());
