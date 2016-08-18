@@ -11,13 +11,14 @@
 package mundo;
 
 import anotaciones.Init;
+import anotaciones.Log;
 import anotaciones.NoInit;
 
 /**
  * Entidad que representa a un vendedor de MLA
  */
 @Init(String="-- Vacio --")
-public class Vendedor
+public class Vendedor implements Prueba1
 {
 
     /**
@@ -40,19 +41,24 @@ public class Vendedor
      * Sexo del vendedor
      */
     private String sexo;
-
+    
     public String getApellidos() {
         return apellidos;
     }
-
+    
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
 
+    @Log
     public String getSexo() {
         return sexo;
     }
 
+    public int hello(){
+        return 3;
+    }
+    
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
