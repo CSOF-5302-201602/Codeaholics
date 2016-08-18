@@ -8,7 +8,6 @@ package anotaciones;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
 /**
@@ -22,8 +21,16 @@ public class Logger {
 	private static Logger instance = null;
 	private static PrintWriter logFile = null;
 	
-        public static void Log(String pDate, Class claseRepresentada) {      
-            String logInfo = pDate + " " + claseRepresentada.getName(); //+ " " + method.getName();
+        public void insertLog(String pDate, String pClass, String pMethod) { 
+            
+            String logInfo = "=" + "INFO" + "=" + "" + pDate + " " + pClass + " " + pMethod;
+            System.out.println(logInfo);
+            info(logInfo);
+        }
+        
+        public void testInsert() { 
+            
+            String logInfo = "This is a test call to insert.";
             System.out.println(logInfo);
             info(logInfo);
         }
@@ -48,7 +55,7 @@ public class Logger {
 		return instance;
 	}
 
-        public static void info( String pInfo ) {
+        private static void info( String pInfo ) {
            logFile.println(pInfo);
            logFile.flush();
         }

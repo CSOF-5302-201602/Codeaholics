@@ -15,6 +15,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Date;
 
 
 /**
@@ -33,6 +34,7 @@ public class CodigoInserciones
      */
     public static void Init(Object instance, Class claseRepresentada, Annotation annotacion, Method method) throws Exception {
         Init c = (Init) annotacion;
+        
         for (Field f : claseRepresentada.getDeclaredFields()) {
 
             System.out.println(f.isAnnotationPresent(NoInit.class));
@@ -72,11 +74,21 @@ public class CodigoInserciones
 
             } else {
 
-                System.out.println("Aplicando atributos de la anotación Init");
+                System.out.println("Aplicando atributos de la anotación Init");                
+                Logger.getInstance().insertLog("@Init", claseRepresentada.getCanonicalName() , "X");
             }
         }
     }
-
+    
+    public static void Log() throws Exception {
+        System.out.println("Aplicando anotacion Log");
+        try {
+            Logger.getInstance().testInsert();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+            
+        }
+    }
     
     /**
      *Metodo invocado en la nsercion de código hecha a los métodos anotados con @PostConstructor

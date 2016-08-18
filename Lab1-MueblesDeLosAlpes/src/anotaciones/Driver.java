@@ -19,6 +19,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -32,7 +33,7 @@ public class Driver {
      * método que la represente en la clase CodigoInserciones debe estar en este
      * arreglo para que sea efectiva
      */
-    public static Class[] anotacionesInsercion = {Init.class};
+    public static Class[] anotacionesInsercion = {Log.class, Init.class};
 
     /**
      * Estructura encargada de contener las clases y sus proxys
@@ -43,6 +44,9 @@ public class Driver {
             return h1.compareTo(h2);
         }
     });
+
+    //AO: Metodos que requieren overriding
+    private static String[] overrideMethods = {"nuevoMueble"};
 
     /**
      * Permite saber si el método que se le pasa como parametro tiene
@@ -108,6 +112,7 @@ public class Driver {
         File source = new File("./src/mundo/" + objetivo.getSimpleName() + "Proxy.java");
         File librerias = new File("./lib/");
         PrintWriter pw = null;
+        System.out.println("./src/mundo/" + objetivo.getSimpleName() + "Proxy.java");
         try {
             // La insercion sólo se realiza si el objetivo es una clase
             if (!objetivo.isInterface() && !objetivo.isEnum()) {
@@ -132,6 +137,7 @@ public class Driver {
 
                 // El proxy extiende del objetivo
                 pw.println("public class " + objetivo.getSimpleName() + "Proxy extends " + objetivo.getSimpleName() + "{");
+                System.out.println("***public class " + objetivo.getSimpleName() + "Proxy extends " + objetivo.getSimpleName() + "{");
 
                 // Se crea el constructor por defecto del proxy
                 pw.println("public " + objetivo.getSimpleName() + "Proxy(){");
@@ -144,6 +150,10 @@ public class Driver {
                     // Se verifica si tiene una anotación con inyección, los métodos estáticos no se han contemplado
                     if (tieneInyeccion(method) && !Modifier.isStatic(modifi)) {
                         // Se imprime la declaración del metodo
+
+                        if (method.getName().equals(overrideMethods[0])) {
+                            pw.println("@Override");
+                        }
                         pw.print(Modifier.toString(modifi));
                         Class tipoRetorno = method.getReturnType();
                         pw.print(" " + tipoRetorno.getSimpleName());
@@ -152,6 +162,7 @@ public class Driver {
                         for (int e = 0; e < para.length; e++) {
                             pw.print(para[e].getSimpleName() + " arg" + e + (e == para.length - 1 ? "" : ","));
                         }
+                        System.out.println("====" + method.getName() + "****");
                         pw.println(")");
                         Class[] excep = method.getExceptionTypes();
                         if (excep.length > 0) {
@@ -164,15 +175,33 @@ public class Driver {
 
                         // Se verifica e inyecta el código de cada anotación presente
                         for (Class annotation : anotacionesInsercion) {
+
                             if (method.isAnnotationPresent(annotation)) {
+
+                                System.out.println("Method:" + method.getName() + "" + "has anotation " + annotation.getName());
+
                                 pw.println("{try{");
+
                                 pw.print("Method meth = " + objetivo.getSimpleName() + ".class.getMethod(\"" + method.getName() + "\",new Class[]{");
                                 for (int e = 0; e < para.length; e++) {
                                     pw.print(getRealType(para[e]) + (e == para.length - 1 ? "" : ","));
                                 }
                                 pw.println("});");
-                                pw.println("Annotation an = meth.getAnnotation(" + annotation.getName() + ".class);");
-                                pw.println("CodigoInserciones." + annotation.getSimpleName() + "(this," + objetivo.getSimpleName() + ".class,an,meth);");
+
+                                if (annotation.equals(Log.class)) {
+                                    System.out.println("Ok, we are ready to work with @Log");
+                                    //AO: Insert logger if Annotation is Log   
+                                    //AO: Insert here realtime logger (no AOP)
+
+                                    pw.println("CodigoInserciones." + annotation.getSimpleName() + "();");
+                                    System.out.println("CodigoInserciones." + annotation.getSimpleName() + "();");
+
+                                } else {
+
+                                    pw.println("Annotation an = meth.getAnnotation(" + annotation.getName() + ".class);");
+                                    pw.println("CodigoInserciones." + annotation.getSimpleName() + "(this," + objetivo.getSimpleName() + ".class, an, meth);");
+                                }
+
                                 pw.println("} catch (NoSuchMethodException ex) {");
                                 pw.println("ex.printStackTrace();");
                                 pw.println("} catch (SecurityException ex) {");
@@ -205,10 +234,15 @@ public class Driver {
                 // Si el objetivo tiene inyecciones, el proxy se compila y se carga dinámicamente
                 if (tieneInyecciones) {
                     String libs = "";
+                    int nlibs = 0;
                     for (File jar : librerias.listFiles()) {
                         libs += "\"" + librerias.getCanonicalPath() + "\\" + jar.getName() + "\";";
+                        System.out.println("adding lib " + nlibs);
+                        nlibs += 1;
                     }
-                    // Se compila, para esto es necesario el JDK
+
+                    System.out.println("ready to compile");
+                    //Se compila, para esto es necesario el JDK
                     Process b = Runtime.getRuntime().exec("javac -d \"" + classes.getCanonicalPath() + "\" -classpath " + libs + "\"" + classpa.getCanonicalPath() + "\" \"" + source.getCanonicalPath() + "\"");
 
                     BufferedReader error = new BufferedReader(new InputStreamReader(b.getErrorStream()));
@@ -265,6 +299,7 @@ public class Driver {
     public static Object instanciar(Class c) {
         try {
             // Se carga el proxy de la clase
+            System.out.println("* Proxy de la clase: " + c.getName());
             Class implementacion = crearProxy(c);
 
             // Se busca su constructor por defecto
@@ -276,46 +311,47 @@ public class Driver {
             for (Method f : c.getDeclaredMethods()) {
                 // Se verifica si la clase tiene la anotación despuesDelConstructor
                 if (f.isAnnotationPresent(PostConstructor.class)) {
-                    // Se inicializan los atributos afectador por las anotaciones Init
+                    // Se inicializan los atributos afectador por las anotaciones PostConstructor
                     CodigoInserciones.PostConstructor();
                     try {
                         System.out.println("Metodo " + f.getName());
-                        f.invoke(objeto, null);
+                        f.invoke(objeto);
 
                     } catch (Exception e) {
                         System.out.println("Error en Driver.java metodo instanciar");
                     }
                 }
 
+                //AO: basic logger, works at instantiation
+                if (f.isAnnotationPresent(Log.class)) {
+                    System.out.println("Ok found a Log annotation");
+                    Date current = new Date();
+                    Logger.getInstance().insertLog(current.toString(), c.getName(), f.getName());
+                }
             }
 
             //SCC2
             for (Class f : c.getInterfaces()) {
-                    if (f.isAnnotationPresent(anotacionInterfaz.class)) {
-                        CodigoInserciones.puntoD();
-                    }
+                if (f.isAnnotationPresent(anotacionInterfaz.class)) {
+                    CodigoInserciones.puntoD();
+                }
             }
             /*
-            for (Class f : c.getInterfaces()) {
-                for (Method g : f.getMethods()) {
-                    if (g.isAnnotationPresent(anotacionInterfaz.class)) {
-                        CodigoInserciones.puntoD();
-                    }
-                }
-            }*/
+             for (Class f : c.getInterfaces()) {
+             for (Method g : f.getMethods()) {
+             if (g.isAnnotationPresent(anotacionInterfaz.class)) {
+             CodigoInserciones.puntoD();
+             }
+             }
+             }*/
+
             // Se verifica si la clase tiene la anotación Init
             if (c.isAnnotationPresent(Init.class)) {
                 // Se inicializan los atributos afectador por las anotaciones Init
+                System.out.println("Ok. found annotations with Init");
                 CodigoInserciones.Init(objeto, c, c.getAnnotation(Init.class), null);
             }
 
-            
-            // Se verifica si la clase tiene la anotación Log
-            if(c.isAnnotationPresent(Log.class)){
-                // Se inicializan los atributos afectador por las anotaciones Init
-                Logger.Log("00/00/2016 1:00", c);
-            }
-            
             for (Field f : c.getDeclaredFields()) {
                 // Se instancian los atributos anotados con Cargar
                 if (f.isAnnotationPresent(Cargar.class)) {

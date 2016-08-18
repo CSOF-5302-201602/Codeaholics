@@ -13,6 +13,7 @@ package mundo;
 import anotaciones.Cargar;
 import anotaciones.Driver;
 import anotaciones.Log;
+import anotaciones.Logger;
 import java.util.ArrayList;
 
 /**
@@ -30,7 +31,9 @@ public class ManejadorMuebles {
      * Id generado para los muebles (id++)
      */
     private int idGenerator;
-
+    
+    Logger log = Logger.getInstance();
+    
     public ManejadorMuebles() {
     }
 
