@@ -1,7 +1,8 @@
 # Codeaholics
 # ECOS Curso : Desarrollo de Software por Componentes
 
-Laboratorios
+##Laboratorio 2 JEE-JSF
+
 
 Las contribuciones del grupo 7 en la siguiente rama:
 
@@ -9,14 +10,3 @@ Las contribuciones del grupo 7 en la siguiente rama:
 * Jheison Rodriguez
 * David Martinez
 * Alvaro Cordoba
-
-
-Lab01
-
-
-Lab02
-
-
-
-
-
