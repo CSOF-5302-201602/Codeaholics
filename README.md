@@ -3,10 +3,20 @@
 
 Laboratorios
 
-Las contribuciones de los dos grupos del equipo Codeaholics se encuentran en las siguientes ramas:
+Las contribuciones del grupo 7 en la siguiente rama:
 
 [developDAJ](https://github.com/CSOF-5302-201602/Codeaholics/tree/developDAJ)
 * Jheison Rodriguez
 * David Martinez
 * Alvaro Cordoba
+
+
+Lab01
+
+
+Lab02
+
+
+
+
 
