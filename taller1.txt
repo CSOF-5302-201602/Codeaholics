@@ -8,3 +8,11 @@ Wed Aug 17 00:05:36 COT 2016-mundo.Mueble-getNombre
 Wed Aug 17 23:17:31 COT 2016-mundo.Mueble-getNombre
 Wed Aug 17 23:17:32 COT 2016-mundo.Mueble-getNombre
 Wed Aug 17 23:17:33 COT 2016-mundo.Mueble-getNombre
+Wed Aug 17 23:31:14 COT 2016 - mundo.Mueble - getNombre
+Wed Aug 17 23:31:14 COT 2016 - mundo.Mueble - getPrecio
+Wed Aug 17 23:31:15 COT 2016 - mundo.Mueble - getNombre
+Wed Aug 17 23:31:15 COT 2016 - mundo.Mueble - getPrecio
+Wed Aug 17 23:31:15 COT 2016 - mundo.Mueble - getNombre
+Wed Aug 17 23:31:15 COT 2016 - mundo.Mueble - getPrecio
+Wed Aug 17 23:31:16 COT 2016 - mundo.Mueble - getNombre
+Wed Aug 17 23:31:16 COT 2016 - mundo.Mueble - getPrecio
