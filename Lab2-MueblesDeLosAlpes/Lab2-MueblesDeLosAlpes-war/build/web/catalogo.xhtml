@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : catalogo
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="titulo" value="Catálogo de muebles" />
+    <ui:define name="body">
+        <h:form>
+
+            <!-- Panel para agregar un nuevo mueble -->
+            <h:panelGroup>
+                <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputLabel for="TxtReferencia"
+                                     value="Referencia"/>
+                    <h:inputText id="TxtReferencia"
+                                   size="20"
+                                   maxlength="20"
+                                   label="Referencia"
+                                   value="#{catalogoBean.mueble.referencia}"
+                                   required="true"
+                                   >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    <h:message id="nameMsg" for="TxtReferencia" />
+                </h:panelGrid>
+
+                <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputLabel for="TxtNombre"
+                                     value="Nombre" />
+                    <h:inputText id="TxtNombre"
+                                   maxlength="20"
+                                   size="20"
+                                   value="#{catalogoBean.mueble.nombre}"
+                                   label="Nombre"
+                                   required="true">
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    <h:message id="pwMsg" for="TxtNombre" />
+                </h:panelGrid>
+
+                <h:panelGrid columns="1" width="100px"
+                               columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+
+                    <h:outputLabel for="TxtDescripcion" value="Descripción" />
+                    <h:inputTextarea id="TxtDescripcion"
+                                       value="#{catalogoBean.mueble.descripcion}"
+                                       rows="4" style="width: 125px"
+                                       label="Descripción"
+                                       >
+                        <f:validateLength minimum="1"/>
+
+                    </h:inputTextarea>
+                    <h:message id="descMsg" for="TxtDescripcion" />
+
+                </h:panelGrid>
+                <h:panelGrid>
+                    <h:selectOneMenu value="#{catalogoBean.mueble.tipo}">
+                        <f:selectItems value="#{catalogoBean.tiposMuebles}" />
+                    </h:selectOneMenu>
+                </h:panelGrid>
+
+                <h:commandButton value="Agregar" action="#{catalogoBean.agregarMueble}" />
+                <h:commandButton value="Limpiar" action="#{catalogoBean.limpiar}" />
+            </h:panelGroup>
+            
+        </h:form>
+        <h:form>
+            
+
+                <!-- Se crea una tabla donde se presentan los muebles del sistema -->
+                <p:dataTable
+                    id="data"
+                    value="#{catalogoBean.muebles}"
+                    var="file"
+                    scrollable="false"
+                    scrollHeight="100px"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    resizableColumns="true"
+                    rows="5">
+
+                           
+                    <p:column headerText="Referencia" sortBy="#{file.referencia}">
+                        <h:outputText value="#{file.referencia}" />
+                    </p:column>
+                    
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{file.nombre}" />
+                    </p:column>
+                    
+                    <p:column headerText="Descripción">
+                        <h:outputText value="#{file.descripcion}" />
+                    </p:column>
+                    
+                    <p:column headerText="Tipo">
+                        <h:outputText value="#{file.tipo}" />
+                    </p:column>
+                    
+                </p:dataTable>
+
+        </h:form>
+
+    </ui:define>
+
+
+</ui:composition>
