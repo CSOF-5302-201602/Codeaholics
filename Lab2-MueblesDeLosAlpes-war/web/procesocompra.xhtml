@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : index
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:param name="titulo" value="Proceso de compra" />
+    <ui:define name="body">
+        <h:form>
+            <!-- Formulario de autenticación  -->
+            <h:panelGroup>
+                <h1> 
+                    Proceso de compra
+                </h1>
+                <p:dataTable id="muebles" var="mueble" value="#{catalogoBean.muebles}">
+                    <p:column headerText="Referencia">
+                        <h:outputText value="#{mueble.referencia}" />
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{mueble.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="Descripcion">
+                        <h:outputText value="#{mueble.descripcion}" />
+                    </p:column>
+
+                    <p:column headerText="Tipo">
+                        <h:outputText value="#{mueble.tipo}" />
+                    </p:column>
+
+                    <p:column headerText="Comprar">
+                        <p:selectBooleanCheckbox value="#{mueble.seleccion}" />
+                    </p:column>
+                </p:dataTable>
+            </h:panelGroup>
+
+            <p:separator />
+            
+            <p:commandButton value="Comprar" action="#{carritoCompra.guardarCompra}" />
+            <p:commandButton value="Cancelar" styleClass="ui-priority-primary" />
+
+        </h:form>
+    </ui:define>
+</ui:composition>
