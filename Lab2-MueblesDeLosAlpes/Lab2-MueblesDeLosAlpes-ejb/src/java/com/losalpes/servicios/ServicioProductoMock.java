@@ -21,34 +21,36 @@ public class ServicioProductoMock implements IServicioProducto {
     public ServicioProductoMock()
     {
     
-        clientes=new ArrayList<Cliente>();
+        productos=new ArrayList<Producto>();
         
-        clientes.add(new Cliente(TipoDocumento.CC, 123456, "Foo Bar", 123456, 123456, "Calle tal carrera tal", "Sogamoso", "Boyaca", "CO", "Profesion", "foo@bar.net" ));
+        productos.add(new Producto("material", "dimensiones", "color", 1232, "foto"));
     }
 
     @Override
-    public void agregarCliente(Cliente cliente) {
+    public void agregarProducto(Producto producto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void mostrarCliente(Integer numeroDocumento) {
+    public void mostrarProducto(String referencia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void actualizarCliente(Integer numeroDocumento) {
+    public void actualizarProducto(String referencia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void eliminarCliente(Integer numeroDocumento) {
+    public void eliminarProducto(String referencia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Cliente> darClientes() {
+    public List<Producto> darProductos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
 }
