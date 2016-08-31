@@ -1,2 +1,8 @@
 /Lab1-MueblesDeLosAlpes/nbproject/private/
 /Lab1-MueblesDeLosAlpes/build/
+
+*/*/build
+*/*/*/build
+*/*/*/*/build
+/*/nbproject/
+Lab2-MueblesDeLosAlpes/Lab2-MueblesDeLosAlpes-ejb/dist/Lab2-MueblesDeLosAlpes-ejb.jar
