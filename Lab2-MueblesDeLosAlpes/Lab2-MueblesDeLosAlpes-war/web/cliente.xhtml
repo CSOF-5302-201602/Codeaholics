@@ -11,99 +11,90 @@
 
     <ui:param name="titulo" value="Gestion de clientes" />
     <ui:define name="body">
-        
+
         <h:form>
 
-            <!-- Panel para agregar un nuevo mueble -->
+            <!-- Panel para agregar un nuevo cliente -->
             <h:panelGroup>
-                <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
-                    <h:outputLabel for="TxtReferencia"
-                                     value="Referencia"/>
-                    <h:inputText id="TxtReferencia"
-                                   size="20"
-                                   maxlength="20"
-                                   label="Referencia"
-                                   value="#{catalogoBean.mueble.referencia}"
-                                   required="true"
-                                   >
-                        <f:validateLength minimum="1"/>
-                    </h:inputText>
-                    <h:message id="nameMsg" for="TxtReferencia" />
-                </h:panelGrid>
-
-                <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
-                    <h:outputLabel for="TxtNombre"
-                                     value="Nombre" />
-                    <h:inputText id="TxtNombre"
-                                   maxlength="20"
-                                   size="20"
-                                   value="#{catalogoBean.mueble.nombre}"
-                                   label="Nombre"
-                                   required="true">
-                        <f:validateLength minimum="1"/>
-                    </h:inputText>
-                    <h:message id="pwMsg" for="TxtNombre" />
-                </h:panelGrid>
-
-                <h:panelGrid columns="1" width="100px"
-                               columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
-
-                    <h:outputLabel for="TxtDescripcion" value="Descripción" />
-                    <h:inputTextarea id="TxtDescripcion"
-                                       value="#{catalogoBean.mueble.descripcion}"
-                                       rows="4" style="width: 125px"
-                                       label="Descripción"
-                                       >
-                        <f:validateLength minimum="1"/>
-
-                    </h:inputTextarea>
-                    <h:message id="descMsg" for="TxtDescripcion" />
-
-                </h:panelGrid>
-                <h:panelGrid>
-                    <h:selectOneMenu value="#{catalogoBean.mueble.tipo}">
-                        <f:selectItems value="#{catalogoBean.tiposMuebles}" />
+                  <h:panelGrid>
+                      <h:outputLabel for="TxtTipoDocumento" value="Tipo Documento"/>
+                    <h:selectOneMenu id="TxtTipoDocumento" value="#{clienteBean.cliente.tipoDocumento}">
+                        <f:selectItems value="#{clienteBean.tiposDocumentos}" />
                     </h:selectOneMenu>
                 </h:panelGrid>
 
-                <h:commandButton value="Agregar" action="#{catalogoBean.agregarMueble}" />
-                <h:commandButton value="Limpiar" action="#{catalogoBean.limpiar}" />
+                <h:panelGrid>
+                <h:outputLabel for="TxtNumeroDocumento" value="Numero Documento"/>
+                    <h:inputText id="TxtNumeroDocumento"
+                                 size="20"
+                                 maxlength="20"
+                                 label="Referencia"
+                                 value="#{clienteBean.cliente.numeroDocumento}"
+                                 required="true"
+                                 >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                </h:panelGrid>
+                 <h:panelGrid>
+                <h:outputLabel for="TxtNombreCliente" value="Nombre"/>
+                    <h:inputText id="TxtNombreCliente"
+                                 size="20"
+                                 maxlength="20"
+                                 label="Referencia"
+                                 value="#{clienteBean.cliente.nombreCliente}"
+                                 required="true"
+                                 >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                </h:panelGrid>
+                 <h:panelGrid>
+                <h:outputLabel for="TxtEmail" value="Email"/>
+                    <h:inputText id="TxtEmail"
+                                 size="20"
+                                 maxlength="20"
+                                 label="Referencia"
+                                 value="#{clienteBean.cliente.email}"
+                                 required="true"
+                                 >
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandButton value="Agregar" action="#{clienteBean.agregarCliente}" />
+                <h:commandButton value="Limpiar" action="#{clienteBean.limpiar}" />
             </h:panelGroup>
-            
+
         </h:form>
         <h:form>
-            
+            <!-- Se crea una tabla donde se presentan los clientes del sistema -->
+            <p:dataTable
+                id="data"
+                value="#{clienteBean.clientes}"
+                var="file"
+                scrollable="false"
+                scrollHeight="100px"
+                paginator="true"
+                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                resizableColumns="true"
+                rows="5">
 
-                <!-- Se crea una tabla donde se presentan los clientes del sistema -->
-                <p:dataTable
-                    id="data"
-                    value="#{clienteBean.clientes}"
-                    var="file"
-                    scrollable="false"
-                    scrollHeight="100px"
-                    paginator="true"
-                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                    resizableColumns="true"
-                    rows="5">
 
-                           
-                    <p:column headerText="Tipo Documento" >
-                        <h:outputText value="#{file.tipoDocumento}" />
-                    </p:column>
-                    
-                    <p:column headerText="Num Documento" sortBy="#{file.numeroDocumento}">
-                        <h:outputText value="#{file.numeroDocumento}" />
-                    </p:column>
-                    
-                    
-                    <p:column headerText="Nombre">
-                        <h:outputText value="#{file.nombreCliente}" />
-                    </p:column>
-                    
-                    <p:column headerText="Email">
-                        <h:outputText value="#{file.email}" />
-                    </p:column>
-                </p:dataTable>
+                <p:column headerText="Tipo Documento" >
+                    <h:outputText value="#{file.tipoDocumento}" />
+                </p:column>
+
+                <p:column headerText="Num Documento" sortBy="#{file.numeroDocumento}">
+                    <h:outputText value="#{file.numeroDocumento}" />
+                </p:column>
+
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{file.nombreCliente}" />
+                </p:column>
+
+                <p:column headerText="Email">
+                    <h:outputText value="#{file.email}" />
+                </p:column>
+            </p:dataTable>
 
         </h:form>
     </ui:define>

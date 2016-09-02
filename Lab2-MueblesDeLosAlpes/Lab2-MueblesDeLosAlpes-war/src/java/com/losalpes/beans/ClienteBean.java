@@ -6,10 +6,12 @@
 package com.losalpes.beans;
 
 import com.losalpes.bos.Cliente;
+import com.losalpes.bos.TipoDocumento;
 import javax.faces.bean.ManagedBean;
 import com.losalpes.servicios.IServicioCliente;
 import com.losalpes.servicios.ServicioClienteMock;
 import java.util.List;
+import javax.faces.model.SelectItem;
 
 /**
  * Beans encargado de gestionar los clientes.
@@ -23,6 +25,14 @@ public class ClienteBean {
      * Representa un nuevo cliente a ingresar
      */
     private Cliente cliente;
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
     
     /**
      * Relación con la interfaz que provee los servicios necesarios del cliente.
@@ -33,6 +43,7 @@ public class ClienteBean {
      */
     public ClienteBean() {
         this.serviceCliente = new ServicioClienteMock();
+        this.cliente = new Cliente();
     }
     
     
@@ -42,9 +53,16 @@ public class ClienteBean {
      */
     public void agregarCliente()
     {
-        this.serviceCliente.agregarCliente(new Cliente());
+        this.serviceCliente.agregarCliente(this.cliente);
+        this.cliente = new Cliente();
     }
     
+    /**
+     * Metodo encargado de limpiar los clientes
+     */
+    public void limpiar(){
+        this.cliente = new Cliente();
+    }
     /**
      * Metodo que expone los clientes que tiene el sistema.
      * @return Una lista de clientes
@@ -53,5 +71,22 @@ public class ClienteBean {
               return this.serviceCliente.darClientes();
       
     }
+    
+    /**
+     * Devuelve los tipos de muebles
+     * @return sitems Tipos de muebles en el sistema
+     */
+    public SelectItem[] getTiposDocumentos()
+    {
+        TipoDocumento[] tipos=  TipoDocumento.values();
+        SelectItem[] sitems = new SelectItem[tipos.length];
+        
+        for (int i = 0; i < sitems.length; i++)
+        {
+             sitems[i] = new SelectItem(tipos[i]);
+        }
+        return sitems;
+    }
+
     
 }

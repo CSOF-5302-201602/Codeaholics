@@ -34,6 +34,20 @@ public class Cliente {
     private String email;
 
     public Cliente(TipoDocumento tipoDocumento, Integer numeroDocumento, 
+            String nombreCliente, String email){
+        this.tipoDocumento = tipoDocumento;
+        this.numeroDocumento = numeroDocumento;
+        this.email = email;
+        this.nombreCliente = nombreCliente;
+        this.ciudad = "Bogota";
+        this.departamento = "Cundinamarca";
+        this.direccion = "N/A";
+        this.pais = "Colombia";
+        this.profesion = "N/A";
+        this.telefonoCelular = 0;
+        this.telefonoResidencia = 0;
+    }
+    public Cliente(TipoDocumento tipoDocumento, Integer numeroDocumento, 
             String nombreCliente, Integer telefono, Integer celular, 
             String direccion, String ciudad, String departamento, 
             String pais, String profesion, String email) {
