@@ -6,3 +6,5 @@
 */*/*/*/build
 /*/nbproject/
 Lab2-MueblesDeLosAlpes/Lab2-MueblesDeLosAlpes-ejb/dist/Lab2-MueblesDeLosAlpes-ejb.jar
+/Lab2-MueblesDeLosAlpes/build/
+Lab2-MueblesDeLosAlpes/Lab2-MueblesDeLosAlpes-war/nbproject/private/private.properties
