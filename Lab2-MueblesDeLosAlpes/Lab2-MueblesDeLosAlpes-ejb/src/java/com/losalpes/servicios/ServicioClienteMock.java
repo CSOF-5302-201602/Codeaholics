@@ -28,7 +28,7 @@ public class ServicioClienteMock implements IServicioCliente {
 
     @Override
     public void agregarCliente(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.clientes.add(cliente);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ServicioClienteMock implements IServicioCliente {
 
     @Override
     public List<Cliente> darClientes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.clientes;
     }
     
 }

@@ -17,9 +17,10 @@ import com.losalpes.bos.Mueble;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  * Clase encargada de realizar pruebas unitarias

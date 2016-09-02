@@ -74,10 +74,10 @@
         <h:form>
             
 
-                <!-- Se crea una tabla donde se presentan los muebles del sistema -->
+                <!-- Se crea una tabla donde se presentan los clientes del sistema -->
                 <p:dataTable
                     id="data"
-                    value="#{catalogoBean.muebles}"
+                    value="#{clienteBean.clientes}"
                     var="file"
                     scrollable="false"
                     scrollHeight="100px"
@@ -87,26 +87,25 @@
                     rows="5">
 
                            
-                    <p:column headerText="Referencia" sortBy="#{file.referencia}">
-                        <h:outputText value="#{file.referencia}" />
+                    <p:column headerText="Tipo Documento" >
+                        <h:outputText value="#{file.tipoDocumento}" />
                     </p:column>
+                    
+                    <p:column headerText="Num Documento" sortBy="#{file.numeroDocumento}">
+                        <h:outputText value="#{file.numeroDocumento}" />
+                    </p:column>
+                    
                     
                     <p:column headerText="Nombre">
-                        <h:outputText value="#{file.nombre}" />
+                        <h:outputText value="#{file.nombreCliente}" />
                     </p:column>
                     
-                    <p:column headerText="Descripción">
-                        <h:outputText value="#{file.descripcion}" />
+                    <p:column headerText="Email">
+                        <h:outputText value="#{file.email}" />
                     </p:column>
-                    
-                    <p:column headerText="Tipo">
-                        <h:outputText value="#{file.tipo}" />
-                    </p:column>
-                    
                 </p:dataTable>
 
         </h:form>
-
     </ui:define>
 
 

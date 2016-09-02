@@ -51,6 +51,7 @@ public class Cliente {
         this.telefonoResidencia = telefonoResidencia;
  
     }
+    public Cliente(){}
 
     public TipoDocumento getTipoDocumento() {
         return tipoDocumento;
