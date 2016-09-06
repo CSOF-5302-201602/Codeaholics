@@ -41,7 +41,7 @@
                                  size="20"
                                  maxlength="20"
                                  label="Referencia"
-                                 value="#{clienteBean.cliente.nombreCliente}"
+                                 value="#{clienteBean.cliente.nombre}"
                                  required="true"
                                  >
                         <f:validateLength minimum="1"/>
@@ -88,7 +88,7 @@
 
 
                 <p:column headerText="Nombre">
-                    <h:outputText value="#{file.nombreCliente}" />
+                    <h:outputText value="#{file.nombre}" />
                 </p:column>
 
                 <p:column headerText="Email">

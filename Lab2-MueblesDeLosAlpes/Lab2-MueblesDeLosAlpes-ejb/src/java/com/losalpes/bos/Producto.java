@@ -19,8 +19,7 @@ public class Producto extends Mueble {
     
     private Integer peso;
     
-    private String foto;
-    
+    private String foto;   
 
     public Producto(String material, String dimensiones, 
             String color, Integer peso, String foto) {

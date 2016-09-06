@@ -5,17 +5,17 @@
  */
 package com.losalpes.bos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author f.hernandez
  */
-public class Cliente {
-    
+public class Cliente extends Usuario {
+      
     private TipoDocumento tipoDocumento;
     
     private Integer numeroDocumento;
-    
-    private String nombreCliente;
     
     private Integer telefonoResidencia;
     
@@ -33,12 +33,20 @@ public class Cliente {
     
     private String email;
 
+    public ArrayList<Producto> carrito;   
+    //public ArrayList<Compras> compras;   
+    //public ArrayList<Despachos> despachos;
+    
     public Cliente(TipoDocumento tipoDocumento, Integer numeroDocumento, 
             String nombreCliente, String email){
+        
+        this.setNombre(nombreCliente);
+        this.setTipo(TipoUsuario.CLIENTE);
+        
         this.tipoDocumento = tipoDocumento;
         this.numeroDocumento = numeroDocumento;
         this.email = email;
-        this.nombreCliente = nombreCliente;
+        
         this.ciudad = "Bogota";
         this.departamento = "Cundinamarca";
         this.direccion = "N/A";
@@ -52,13 +60,15 @@ public class Cliente {
             String direccion, String ciudad, String departamento, 
             String pais, String profesion, String email) {
         
+         this.setNombre(nombreCliente);
+        this.setTipo(TipoUsuario.CLIENTE);
+        
         this.tipoDocumento = tipoDocumento;
         this.numeroDocumento = numeroDocumento;
         this.ciudad = ciudad;
         this.departamento = departamento;
         this.direccion = direccion;
         this.email = email;
-        this.nombreCliente = nombreCliente;
         this.pais = pais;
         this.profesion = profesion;
         this.telefonoCelular = telefonoCelular;
@@ -81,14 +91,6 @@ public class Cliente {
 
     public void setNumeroDocumento(Integer numeroDocumento) {
         this.numeroDocumento = numeroDocumento;
-    }
-
-    public String getNombreCliente() {
-        return nombreCliente;
-    }
-
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
     }
 
     public Integer getTelefonoResidencia() {

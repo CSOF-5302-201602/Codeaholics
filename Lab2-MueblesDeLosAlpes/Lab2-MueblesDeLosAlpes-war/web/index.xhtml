@@ -6,7 +6,8 @@
 <ui:composition template="/main-template.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:param name="titulo" value="Control de Acceso" />
     <ui:define name="body">
@@ -28,23 +29,30 @@
                         <f:validateLength minimum="1"/>
                     </h:inputText>
                     <h:message id="nameMsg" for="TxtName" errorClass="error" styleClass="error"/>
-                
+
                     <h:outputLabel for="TxtPw"
-                                     value="Contraseña" />
+                                   value="Contraseña" />
                     <h:inputSecret id="TxtPw"
-                                     maxlength="20"
-                                     size="20"
-                                     value="#{loginBean.contraseña}"
-                                     label="Contraseña"
-                                     required="true">
+                                   maxlength="20"
+                                   size="20"
+                                   value="#{loginBean.contraseña}"
+                                   label="Contraseña"
+                                   required="true">
                         <f:validateLength minimum="6" maximum="15" />
                     </h:inputSecret>
                     <h:message id="pwMsg" for="TxtPw" styleClass="error"/>
-                    
+
                     <h:commandButton value="Ingresar" action="#{loginBean.login}" type="submit" />
                 </h:panelGrid>
-                
+
             </h:panelGroup>
         </h:form>
+
+        <div id="carritoContainer">
+            <h:button value="Carrito"  outcome="carrito" />
+        </div>
+        
+        
+        
     </ui:define>
 </ui:composition>

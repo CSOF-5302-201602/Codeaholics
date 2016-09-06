@@ -7,8 +7,10 @@ package com.losalpes.beans;
 
 import com.losalpes.bos.Cliente;
 import com.losalpes.bos.TipoDocumento;
+import com.losalpes.servicios.IServicioCarrito;
 import javax.faces.bean.ManagedBean;
 import com.losalpes.servicios.IServicioCliente;
+import com.losalpes.servicios.ServicioCarritoMock;
 import com.losalpes.servicios.ServicioClienteMock;
 import java.util.List;
 import javax.faces.model.SelectItem;
@@ -38,11 +40,14 @@ public class ClienteBean {
      * Relación con la interfaz que provee los servicios necesarios del cliente.
      */
     private IServicioCliente serviceCliente;
+    
+    private IServicioCarrito carritoCliente;
     /**
      * Creates a new instance of ClienteBean
      */
     public ClienteBean() {
         this.serviceCliente = new ServicioClienteMock();
+        this.carritoCliente = new ServicioCarritoMock();
         this.cliente = new Cliente();
     }
     

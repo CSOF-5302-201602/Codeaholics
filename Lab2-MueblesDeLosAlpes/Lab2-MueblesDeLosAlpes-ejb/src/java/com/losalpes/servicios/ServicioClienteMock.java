@@ -21,14 +21,14 @@ public class ServicioClienteMock implements IServicioCliente {
     public ServicioClienteMock()
     {
     
-        clientes=new ArrayList<Cliente>();
-        
+        clientes=new ArrayList<Cliente>();      
         clientes.add(new Cliente(TipoDocumento.CC, 123456, "Foo Bar", 123456, 123456, "Calle tal carrera tal", "Sogamoso", "Boyaca", "CO", "Profesion", "foo@bar.net" ));
+    
     }
 
     @Override
     public void agregarCliente(Cliente cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.clientes.add(cliente);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ServicioClienteMock implements IServicioCliente {
 
     @Override
     public List<Cliente> darClientes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.clientes;
     }
     
 }
