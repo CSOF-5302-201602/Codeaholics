@@ -25,7 +25,7 @@ public interface IServicioCarrito {
      * Devuelve todos los muebles del sistema
      * @return muebles Lista de muebles
      */
-    public List<Producto> darProductos();
+    public List<Mueble> darProductos();
     
     /**
      * Redirecciona al servicio de pago en linea

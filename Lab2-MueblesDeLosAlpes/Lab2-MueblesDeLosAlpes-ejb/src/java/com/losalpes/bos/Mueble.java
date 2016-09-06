@@ -14,7 +14,7 @@ package com.losalpes.bos;
 /**
  * Clase que representa la información de un mueble en el sistema
  */
-public class Mueble
+public class Mueble extends Producto implements Comparable<Mueble>
 {
 
     //-----------------------------------------------------------
@@ -164,6 +164,14 @@ public class Mueble
     public void setSeleccion(boolean seleccion)
     {
         this.seleccion = seleccion;
+    }
+
+    @Override
+    public int compareTo(Mueble o) {
+        if( this.getReferencia().equals(o.getReferencia()))
+            return 1;
+        else
+            return 0;
     }
 
 

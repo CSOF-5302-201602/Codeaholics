@@ -9,21 +9,25 @@ package com.losalpes.bos;
  *
  * @author f.hernandez
  */
-public class Producto extends Mueble {
-    
-    private String material;
-    
-    private String dimensiones;
-    
-    private String color;
-    
-    private Integer peso;
-    
-    private String foto;   
+public class Producto {
 
-    public Producto(String material, String dimensiones, 
+    private String material;
+
+    private String dimensiones;
+
+    private String color;
+
+    private Integer peso;
+
+    private String foto;
+
+    public Producto() {
+
+    }
+
+    public Producto(String material, String dimensiones,
             String color, Integer peso, String foto) {
-        
+
         this.material = material;
         this.dimensiones = dimensiones;
         this.color = color;
@@ -69,7 +73,6 @@ public class Producto extends Mueble {
 
     public void setFoto(String foto) {
         this.foto = foto;
-    }
+    }    
 
-    
 }

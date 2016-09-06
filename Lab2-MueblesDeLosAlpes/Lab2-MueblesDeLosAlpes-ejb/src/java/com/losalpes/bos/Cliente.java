@@ -33,10 +33,12 @@ public class Cliente extends Usuario {
     
     private String email;
 
-    public ArrayList<Producto> carrito;   
-    //public ArrayList<Compras> compras;   
-    //public ArrayList<Despachos> despachos;
+    public ArrayList<Producto> carrito; 
     
+    //public ArrayList<Compras> compras; 
+    
+    //public ArrayList<Despachos> despachos;
+
     public Cliente(TipoDocumento tipoDocumento, Integer numeroDocumento, 
             String nombreCliente, String email){
         
@@ -157,5 +159,12 @@ public class Cliente extends Usuario {
         this.email = email;
     }
     
+    public ArrayList<Producto> getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(ArrayList<Producto> carrito) {
+        this.carrito = carrito;
+    }
     
 }
