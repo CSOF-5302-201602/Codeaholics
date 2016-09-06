@@ -12,13 +12,13 @@
 
 package com.losalpes.test;
 
-import javax.ejb.Stateless;
+//import javax.ejb.Stateless;
 
 /**
  * Session bean de prueba [No se implementa]
  * 
  */
-@Stateless
+//@Stateless
 public class TestSessionBean implements TestSessionLocal
 {
 

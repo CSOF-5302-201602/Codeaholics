@@ -48,10 +48,8 @@ public class LoginBean {
      * Determina si existe error o no
      */
     private boolean error;
-    
+
     private boolean isAuthenticated = false;
-    
-    
 
     //-----------------------------------------------------------
     // Constructor
@@ -156,4 +154,13 @@ public class LoginBean {
     public void cerrarPanelError() {
         error = false;
     }
+
+    public boolean isIsAuthenticated() {
+        return isAuthenticated;
+    }
+
+    public void setIsAuthenticated(boolean isAuthenticated) {
+        this.isAuthenticated = isAuthenticated;
+    }
+
 }

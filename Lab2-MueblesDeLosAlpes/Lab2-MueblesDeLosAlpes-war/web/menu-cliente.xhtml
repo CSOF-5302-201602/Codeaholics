@@ -10,7 +10,15 @@
 
             <ui:define name="body">
                 <div id="menuContainer">
-                    <h:commandButton value="Comprar" action="index" type="submit"/>
+                    <ul>
+                        <li>
+                            <h:button id="backButton" value="Comprar" outcome="index.html" />  
+                        </li>
+                        <li>
+                            <h:button id="backButton" value="Historico Compras" outcome="index.html" /> 
+                        </li>
+                    </ul>
+                    
                 </div>
             </ui:define>
 

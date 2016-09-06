@@ -14,6 +14,9 @@ import com.losalpes.servicios.ServicioProductoMock;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIViewRoot;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -52,8 +55,7 @@ public class ProductoBean {
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
-     
-    
+       
     public List<Mueble> getProductos() {
         return catalogoProductos.darProductos();
     }
@@ -69,6 +71,7 @@ public class ProductoBean {
     
     public String getCarrito() {
         
+
         
         return "";
         

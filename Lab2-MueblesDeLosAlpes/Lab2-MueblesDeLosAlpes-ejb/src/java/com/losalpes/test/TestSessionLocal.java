@@ -12,13 +12,13 @@
 
 package com.losalpes.test;
 
-import javax.ejb.Local;
+//import javax.ejb.Local;
 
 /**
  * Interface de la clase de prueba [No hay que modificar]
  * 
  */
-@Local
+//@Local
 public interface TestSessionLocal
 {
 
