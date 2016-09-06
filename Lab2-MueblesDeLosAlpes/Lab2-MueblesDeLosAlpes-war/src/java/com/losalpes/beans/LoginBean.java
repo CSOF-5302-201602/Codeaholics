@@ -48,6 +48,10 @@ public class LoginBean {
      * Determina si existe error o no
      */
     private boolean error;
+    
+    private boolean isAuthenticated = false;
+    
+    
 
     //-----------------------------------------------------------
     // Constructor
@@ -73,9 +77,11 @@ public class LoginBean {
         try {
             Usuario user = servicio.login(usuario, contraseña);
             if (user.getTipo() == TipoUsuario.ADMINISTRADOR) {
+                this.isAuthenticated = true;
                 return "admin.xhtml";
             } else if (user.getTipo() == TipoUsuario.CLIENTE) {
-                return "cliente.xhtml";
+                this.isAuthenticated = true;
+                return "menu-cliente.xhtml";
             } else {
                 return "";
             }

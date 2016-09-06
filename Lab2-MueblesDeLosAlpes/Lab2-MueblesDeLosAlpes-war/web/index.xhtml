@@ -48,11 +48,45 @@
             </h:panelGroup>
         </h:form>
 
-        <div id="carritoContainer">
-            <h:button value="Carrito"  outcome="carrito" />
+        <p:dataTable
+            id="data"
+            value="#{productoBean.productos}"
+            var="prod"
+            scrollable="false"
+            scrollHeight="100px"
+            paginator="true"
+            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+            resizableColumns="true"
+            rows="5">
+
+
+            <p:column headerText="Referencia" sortBy="#{prod.referencia}">
+                <h:outputText value="#{prod.referencia}" />
+            </p:column>
+
+            <p:column headerText="Nombre">
+                <h:outputText value="#{prod.nombre}" />
+            </p:column>
+
+            <p:column headerText="Material">
+                <h:outputText value="#{prod.material}" />
+            </p:column>
+
+            <p:column headerText="Foto">
+                <h:outputText value="#{prod.foto}" />
+            </p:column>
+            
+            <p:column headerText="Comprar">
+                <h:commandButton value="Agregar" action="#{productoBean.comprar(prod)}" type="submit"/>
+            </p:column>
+
+        </p:dataTable>
+
+
+        <div id="carritoContainer">          
+            <h:commandButton value="Carrito" action="#{productoBean.carrito}" type="submit"/>
         </div>
-        
-        
-        
+
+
     </ui:define>
 </ui:composition>

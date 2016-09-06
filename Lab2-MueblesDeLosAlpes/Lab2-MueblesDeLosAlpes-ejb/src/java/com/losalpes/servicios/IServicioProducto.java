@@ -5,6 +5,7 @@
  */
 package com.losalpes.servicios;
 
+import com.losalpes.bos.Mueble;
 import com.losalpes.bos.Producto;
 import java.util.List;
 
@@ -22,6 +23,6 @@ public interface IServicioProducto {
 
     public void eliminarProducto( String referencia );
 
-    public List<Producto> darProductos();
+    public List<Mueble> darProductos();
 
 }

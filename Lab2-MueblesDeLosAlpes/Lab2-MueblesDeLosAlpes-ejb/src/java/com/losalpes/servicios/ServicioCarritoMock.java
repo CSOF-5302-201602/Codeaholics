@@ -8,6 +8,7 @@ package com.losalpes.servicios;
 import com.losalpes.bos.Mueble;
 import com.losalpes.bos.Producto;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -19,10 +20,7 @@ public class ServicioCarritoMock implements IServicioCarrito {
      private ArrayList<Producto> productos;
 
      public ServicioCarritoMock() {
-         productos = new ArrayList<Producto>();
-         
-         //productos.add(new Producto());
-         
+         productos = new ArrayList<Producto>();         
      }
      
     @Override
@@ -31,8 +29,17 @@ public class ServicioCarritoMock implements IServicioCarrito {
     }
 
     @Override
-    public List<Producto> darProductos() {
-        return productos;
+    public List<Mueble> darProductos() {
+        
+        List<Mueble> muebles = new ArrayList<>();
+        Iterator itr = productos.iterator();
+        
+        while (itr.hasNext()) {
+            muebles.add( (Mueble)itr.next());
+        }
+        
+        return muebles;
+        
     }
 
     @Override

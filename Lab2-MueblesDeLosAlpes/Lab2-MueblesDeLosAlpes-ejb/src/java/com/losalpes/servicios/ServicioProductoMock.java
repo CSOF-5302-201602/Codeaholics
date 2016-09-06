@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,8 +5,11 @@
  */
 package com.losalpes.servicios;
 
+import com.losalpes.bos.Mueble;
 import com.losalpes.bos.Producto;
+import com.losalpes.bos.TipoMueble;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -21,34 +23,69 @@ public class ServicioProductoMock implements IServicioProducto {
     public ServicioProductoMock()
     {
     
-        productos=new ArrayList<Producto>();
+        productos = new ArrayList<>();
         
-        productos.add(new Producto("material", "dimensiones", "color", 1232, "foto"));
+        for( int i=0; i < 4; ++i ) {
+            Mueble muebleX1 = new Mueble("RF1","Silla clásica","Una confortable silla con estilo del siglo XIX.",TipoMueble.Interior);
+            muebleX1.setDimensiones("10x10x10");
+            muebleX1.setMaterial("roble");
+            muebleX1.setColor("natural");
+            muebleX1.setPeso(50);
+            muebleX1.setFoto("FotoX1.png");
+            
+            productos.add(muebleX1);
+            
+        }
+              
     }
 
     @Override
     public void agregarProducto(Producto producto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
     public void mostrarProducto(String referencia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
     public void actualizarProducto(String referencia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void eliminarProducto(String referencia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Iterator itr = productos.iterator();
+        int index = 0;
+        boolean found = false;
+        while (itr.hasNext()) {
+            Mueble mueble = (Mueble)itr.next();
+            if( mueble.getReferencia().equals(referencia)) {
+                found = true;
+                break;
+            }
+            ++index;
+        }
+        
+        if (found)
+            productos.remove(index);
+        
     }
 
     @Override
-    public List<Producto> darProductos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Mueble> darProductos() {
+        
+        List<Mueble> muebles = new ArrayList<>();
+        Iterator itr = productos.iterator();
+        
+        while (itr.hasNext()) {
+            muebles.add( (Mueble)itr.next());
+        }
+        
+        return muebles;
+        
     }
 
     
