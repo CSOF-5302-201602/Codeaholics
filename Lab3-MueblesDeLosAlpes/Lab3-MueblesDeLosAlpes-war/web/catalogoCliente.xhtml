@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : catalogoCliente
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:param name="titulo" value="Catálogo de muebles" />
+    <ui:define name="body">
+       
+        <script type="text/javascript">
+            function handleDrop(event, ui) {
+                var droppedMueble = ui.draggable;
+                droppedMueble.fadeOut('fast');
+            }
+        </script>
+        <h:panelGroup>
+
+            <!-- Panel para adquirir nuevos muebles -->
+            <p:accordionPanel id="linkPanel">
+                <f:facet name="header">
+
+                    <h:outputText id="linkHeader"
+                                  value="Sesión cliente" style="color:white"/>
+                </f:facet>
+            </p:accordionPanel>
+
+            <h:form>
+                <div align="right">
+                    <h:commandButton  action="#{loginBean.logout}"  style="background: transparent;
+                                      padding-right: 12px" image="./resources/img/pag/logOff.png"
+                                      title="Cerrar sesión"/>
+                </div>
+            </h:form>
+
+            <h:form>
+                <p:fieldset id="availableMueblesFields" legend="Muebles en el inventario">
+                    <p:dataGrid id="availableMuebles" var="mueble" value="#{carritoBean.muebles}" columns="3">
+                        <p:panel id="pnl" header="#{mueble.nombre}" style="text-align:center">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <h:graphicImage width="128" height="128" style="float:right"                    
+                                                value="./resources/img/pag/#{mueble.imagen}.png"
+                                                alt="#{mueble.nombre}"/>
+
+                                <h:outputLabel value="#{mueble.nombre}"  />
+                            </h:panelGrid>
+                        </p:panel>
+                        <p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
+                    </p:dataGrid>
+                </p:fieldset>
+
+                <p:fieldset id="selectedMuebles" legend="Items Seleccionados" style="margin-top:20px">
+                    <p:outputPanel id="dropArea">
+                        <h:outputText value="!!!Arrastrar Aqui!!!" rendered="#{empty carritoBean.inventario}" style="font-size:24px;" />
+                        <p:dataTable id="selectedCarsTable" var="cartItem" value="#{carritoBean.inventario}" rendered="#{not empty carritoBean.inventario}">
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{cartItem.nombre}" />
+                            </p:column>
+
+                            <p:column headerText="Descripcion">
+                                <h:outputText value="#{cartItem.descripcion}" />
+                            </p:column>
+
+                            <p:column headerText="Precio">
+                                <h:outputText value="#{cartItem.precio}" />
+                            </p:column>
+
+                            <p:column headerText="Cantidad">
+                                <h:outputText value="#{cartItem.cantidad}" />
+                            </p:column>
+
+                            <p:column headerText="Costo">
+                                <h:outputText value="$ #{cartItem.precio * cartItem.cantidad}"/>
+                            </p:column>
+
+                            <p:column headerText="Eliminar">
+                                <h:commandLink actionListener="#{carritoBean.removerItemCarrito}"
+                                               value="Eliminar" >
+                                    <f:param name="muebleId" value="#{cartItem.referencia}" />
+                                </h:commandLink>     
+                            </p:column>
+                        </p:dataTable>
+                    </p:outputPanel>
+                </p:fieldset>
+
+                <p:droppable for="selectedMuebles" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableMuebles" onDrop="handleDrop">
+                    <p:ajax listener="#{carritoBean.agregarItemCarrito}" update="dropArea availableMuebles resumenCompra" />
+                </p:droppable>
+
+                <h:panelGroup id="resumenCompra" styleClass="chartContainer backBeanChangeContainer"
+                              style="text-align: right;background-color: white"
+                              >
+                    <h:panelGroup style="background-color: white;border-style: solid;border-color: #D9D9D9;border-width: 1px">
+                        <h:outputText
+                            style="display: inline;"
+                            value="Total: "/>
+                        <h:outputText
+                            style="display: inline;"
+                            value="$ #{carritoBean.precioTotal}" >
+                            <f:convertNumber type="currency"
+                                             groupingUsed="true" maxFractionDigits="2" />
+                        </h:outputText>
+                        <h:outputText style="padding-right: 4px"
+                                      value="(#{carritoBean.totalUnidades} mueble(s))" />
+                    </h:panelGroup>
+                </h:panelGroup>
+                <br></br>
+                <p:separator/>
+                <h:panelGroup style="background-color: white">
+                    <h:commandButton value="Comprar" action="#{carritoBean.comprar}"/>
+                </h:panelGroup>
+                <p:separator/>
+                <h:panelGroup style="background-color: white">
+                    <p:fieldset id="mueblesVendidosFields" legend="Muebles Vendidos">
+
+                        <!-- Se crea una tabla donde se presentan los muebles del sistema -->
+                        <p:dataTable
+                            id="data"
+                            value="#{loginBean.sesion.compras}"
+                            var="file"
+                            paginator="true"
+                            scrollable="false"
+                            scrollHeight="100px"
+                            rows="8">
+
+                            <p:column>
+
+                                <f:facet name="header">
+                                    Nombre
+                                </f:facet>
+                                <h:outputText value="#{file.producto.nombre}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Cantidad
+                                </f:facet>
+                                <h:outputText value="#{file.cantidad}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Imágen
+                                </f:facet>
+                                <p:graphicImage id="imgTable"
+                                                url="./resources/img/pag/#{file.producto.imagen}_small.png"/>
+                                <h:outputText value="#{file.ciudad}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Fecha de compra
+                                </f:facet>
+                                <h:outputText value="#{file.fechaVenta}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:fieldset>    
+                </h:panelGroup>    
+            </h:form>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>
