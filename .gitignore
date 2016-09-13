@@ -5,7 +5,6 @@ dist/
 nbdist/
 .nb-gradle/
 *.class
-*.jar
 *.war
 *.ear
 hs_err_pid*
