@@ -20,12 +20,14 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
+import javax.ejb.Stateful;
 import javax.faces.context.FacesContext;
 
 /**
  * Managed Bean encargado de la administración de vendedores en el sistema
  * 
  */
+@Stateful
 public class VendedorBean implements Serializable
 {
 

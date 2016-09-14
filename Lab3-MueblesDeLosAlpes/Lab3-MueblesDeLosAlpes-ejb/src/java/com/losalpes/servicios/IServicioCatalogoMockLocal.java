@@ -14,11 +14,13 @@ package com.losalpes.servicios;
 
 import com.losalpes.entities.Mueble;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  * Contrato funcional de los servicios que se le prestan al catálogo
  * 
  */
+@Local
 public interface IServicioCatalogoMockLocal
 {
 

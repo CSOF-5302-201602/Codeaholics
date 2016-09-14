@@ -18,12 +18,14 @@ import com.losalpes.excepciones.AutenticacionException;
 import com.losalpes.servicios.IServicioSeguridadMockLocal;
 import com.losalpes.servicios.ServicioSeguridadMock;
 import java.io.Serializable;
+import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 
 /**
  * Managed bean encargado de la autenticación en el sistema
  * 
  */
+@Stateless
 public class LoginBean implements Serializable
 {
 

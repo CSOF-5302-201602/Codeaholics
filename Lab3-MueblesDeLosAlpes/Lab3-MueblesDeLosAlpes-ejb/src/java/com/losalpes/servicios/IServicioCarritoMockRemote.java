@@ -15,11 +15,13 @@ package com.losalpes.servicios;
 import com.losalpes.entities.Mueble;
 import com.losalpes.entities.Usuario;
 import java.util.ArrayList;
+import javax.ejb.Remote;
 
 /**
  * Contrato funcional de los servicios para el carrito de compras
  * 
  */
+@Remote
 public interface IServicioCarritoMockRemote
 {
 

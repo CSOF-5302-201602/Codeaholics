@@ -17,11 +17,13 @@ import com.losalpes.entities.RegistroVenta;
 import com.losalpes.entities.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.ejb.Stateful;
 
 /**
  * Implementacion de los servicios del carrito de compras en el sistema.
  * 
  */
+@Stateful
 public class ServicioCarritoMock implements IServicioCarritoMockRemote, IServicioCarritoMockLocal
 {
     //-----------------------------------------------------------

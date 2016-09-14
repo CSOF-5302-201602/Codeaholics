@@ -21,6 +21,9 @@ import com.losalpes.servicios.ServicioCarritoMock;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import javax.ejb.Remove;
+import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.event.DragDropEvent;
@@ -29,6 +32,7 @@ import org.primefaces.event.DragDropEvent;
  * Managed Bean encargado del carrito de compras del cliente
  * 
  */
+@Stateful
 public class CarritoBean implements Serializable
 {
 
@@ -157,6 +161,7 @@ public class CarritoBean implements Serializable
     /**
      * Remueve el presente bean de la sesión en curso
      */
+    @Remove
     public void destroyBean()
     {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("carritoBean");

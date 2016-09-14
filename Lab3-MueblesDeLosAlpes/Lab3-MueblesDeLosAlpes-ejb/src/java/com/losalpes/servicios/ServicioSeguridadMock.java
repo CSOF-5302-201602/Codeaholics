@@ -14,11 +14,13 @@ package com.losalpes.servicios;
 
 import com.losalpes.entities.Usuario;
 import com.losalpes.excepciones.AutenticacionException;
+import javax.ejb.Singleton;
 
 /**
  * Clase que se encarga de la autenticación de un usuario en el sistema
  * 
  */
+@Singleton
 public class ServicioSeguridadMock implements IServicioSeguridadMockLocal
 {
 

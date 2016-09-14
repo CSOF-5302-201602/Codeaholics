@@ -15,11 +15,13 @@ package com.losalpes.servicios;
 import com.losalpes.entities.Usuario;
 import com.losalpes.excepciones.OperacionInvalidaException;
 import java.util.List;
+import javax.ejb.Remote;
 
 /**
  * Contrato funcional de los servicios de autenticación en el sistema
  * 
  */
+@Remote
 public interface IServicioRegistroMockRemote
 {
     /**
