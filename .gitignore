@@ -9,3 +9,4 @@ nbdist/
 *.ear
 hs_err_pid*
 __MACOSX/
+/*/*/nbproject/private/
