@@ -16,13 +16,14 @@ import com.losalpes.entities.Vendedor;
 import com.losalpes.excepciones.OperacionInvalidaException;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 
 /**
  * Implementación de los servicios de administración de un vendedor en el sistema
  * 
  */
-@Stateless
+@Stateful
 public class ServicioVendedoresMock implements IServicioVendedoresMockRemote, IServicioVendedoresMockLocal {
 
     //-----------------------------------------------------------
