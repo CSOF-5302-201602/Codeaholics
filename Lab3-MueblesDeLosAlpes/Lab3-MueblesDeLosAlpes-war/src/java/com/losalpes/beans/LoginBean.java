@@ -93,7 +93,7 @@ public class LoginBean implements Serializable
             }
             else
             {
-                return "cliente";
+                return "clientes";
             }
         }
         catch (AutenticacionException ex)
