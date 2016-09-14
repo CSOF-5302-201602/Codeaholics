@@ -8,5 +8,6 @@ nbdist/
 *.war
 *.ear
 hs_err_pid*
-__MACOSX/
 /*/*/nbproject/private/
+/Lab3-MueblesDeLosAlpes/Lab3-MueblesDeLosAlpes-war/nbproject/private/
+/Lab3-MueblesDeLosAlpes/Lab3-MueblesDeLosAlpes-ejb/nbproject/private/
