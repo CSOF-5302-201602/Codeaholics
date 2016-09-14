@@ -6,6 +6,7 @@
             <name>Lab3-MueblesDeLosAlpes-ejb</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <included-library dirs="200">file.reference.openpojo-0.7.5.jar</included-library>
+            <included-library dirs="200">file.reference.junit-4.10.jar</included-library>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>

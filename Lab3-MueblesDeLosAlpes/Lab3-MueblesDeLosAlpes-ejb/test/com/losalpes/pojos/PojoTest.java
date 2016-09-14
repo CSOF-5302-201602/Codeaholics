@@ -24,10 +24,13 @@ import com.openpojo.validation.rule.impl.NoStaticExceptFinalRule;
 import com.openpojo.validation.rule.impl.SetterMustExistRule;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
+import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
+import static com.sun.xml.ws.dump.LoggingDumpTube.Position.Before;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+
 
 /**
  * Clase encargada de realizar pruebas unitarias

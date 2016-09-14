@@ -37,7 +37,7 @@
                                       title="Cerrar sesión"/>
                 </div>
             </h:form>
-
+<!--
             <h:form>
                 <p:fieldset id="availableMueblesFields" legend="Muebles en el inventario">
                     <p:dataGrid id="availableMuebles" var="mueble" value="#{carritoBean.muebles}" columns="3">
@@ -53,7 +53,8 @@
                         <p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
                     </p:dataGrid>
                 </p:fieldset>
-
+ -->
+ <!--
                 <p:fieldset id="selectedMuebles" legend="Items Seleccionados" style="margin-top:20px">
                     <p:outputPanel id="dropArea">
                         <h:outputText value="!!!Arrastrar Aqui!!!" rendered="#{empty carritoBean.inventario}" style="font-size:24px;" />
@@ -117,9 +118,9 @@
                 <p:separator/>
                 <h:panelGroup style="background-color: white">
                     <p:fieldset id="mueblesVendidosFields" legend="Muebles Vendidos">
-
+ -->
                         <!-- Se crea una tabla donde se presentan los muebles del sistema -->
-                        <p:dataTable
+    <!--                    <p:dataTable
                             id="data"
                             value="#{loginBean.sesion.compras}"
                             var="file"
@@ -160,6 +161,7 @@
                     </p:fieldset>    
                 </h:panelGroup>    
             </h:form>
+    -->
         </h:panelGroup>
     </ui:define>
 </ui:composition>
