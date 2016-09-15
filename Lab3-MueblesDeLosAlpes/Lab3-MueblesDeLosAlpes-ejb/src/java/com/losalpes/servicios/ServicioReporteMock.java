@@ -15,6 +15,7 @@ import com.losalpes.entities.Mueble;
 import com.losalpes.entities.RegistroVenta;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.ejb.EJB;
 import javax.ejb.Singleton;
 
 /**
@@ -30,6 +31,7 @@ public class ServicioReporteMock implements IServicioReporteMockLocal, IServicio
     /**
      * Interface con referencia al servicio de persistencia en el sistema
      */
+    @EJB
     private IServicioPersistenciaMockLocal persistencia;
 
     /**
@@ -46,7 +48,7 @@ public class ServicioReporteMock implements IServicioReporteMockLocal, IServicio
      */
     public ServicioReporteMock() {
         registrosVentas = new ArrayList<RegistroVenta>();
-        persistencia = new ServicioPersistenciaMock();
+        //persistencia = new ServicioPersistenciaMock();
     }
 
 
