@@ -16,6 +16,7 @@ import com.losalpes.entities.Usuario;
 import com.losalpes.excepciones.OperacionInvalidaException;
 import java.util.List;
 import javax.ejb.Remote;
+import javax.ejb.Remove;
 
 /**
  * Contrato funcional de los servicios de autenticación en el sistema
@@ -35,6 +36,7 @@ public interface IServicioRegistroMockRemote
      * @param login Login único del usuario
      * @throws OperacionInvalidaException Excepción en caso de error operacional
      */
+    @Remove
     public void eliminarCliente(String login) throws OperacionInvalidaException;
 
     /**

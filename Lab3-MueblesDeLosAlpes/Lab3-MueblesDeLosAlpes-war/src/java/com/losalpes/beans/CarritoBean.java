@@ -119,6 +119,7 @@ public class CarritoBean implements Serializable
     /**
      * Realiza una compra basado en los items del carrito
      */
+    //@Remove
     public void comprar()
     {
         if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().containsKey("loginBean"))

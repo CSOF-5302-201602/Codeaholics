@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
+import javax.ejb.Remove;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -390,6 +391,7 @@ public class RegistroBean implements Serializable
     /**
      * Método que remueve este bean del contexto.
      */
+    @Remove
     public void destroyBean()
     {
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("registroBean");
