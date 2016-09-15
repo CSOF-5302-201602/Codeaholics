@@ -50,6 +50,7 @@ public class CarritoBean implements Serializable
     /**
      * Relación con la interfaz que provee los servicios necesarios del catálogo.
      */
+    @EJB
     private IServicioCatalogoMockLocal catalogo;
     
     //-----------------------------------------------------------
