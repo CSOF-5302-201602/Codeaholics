@@ -12,11 +12,13 @@
 
 package com.losalpes.entities;
 
+import java.io.Serializable;
+
 /**
  * Clase que representa la información de un mueble en el sistema
  * 
  */
-public class Mueble
+public class Mueble implements Serializable
 {
 
     //-----------------------------------------------------------

@@ -81,6 +81,7 @@ public class ServicioVendedoresMockTest
     public void testEliminarVendedor() throws Exception
     {
         servicio.eliminarVendedor(1L);
+
     }
 
 }

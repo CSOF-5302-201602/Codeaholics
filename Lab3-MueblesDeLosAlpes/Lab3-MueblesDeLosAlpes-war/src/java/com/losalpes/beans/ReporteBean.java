@@ -17,11 +17,13 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.Stateful;
 
 /**
  * Managed Bean encargado de mostrar el reporte de las ventas del último mes
  *
  */
+@Stateful
 public class ReporteBean implements Serializable {
 
     //-----------------------------------------------------------
@@ -39,7 +41,7 @@ public class ReporteBean implements Serializable {
     // Constructor
     //-----------------------------------------------------------
     public ReporteBean() {
-        servicioReporte = new ServicioReporteMock();
+        //servicioReporte = new ServicioReporteMock();
     }
 
     //-----------------------------------------------------------
