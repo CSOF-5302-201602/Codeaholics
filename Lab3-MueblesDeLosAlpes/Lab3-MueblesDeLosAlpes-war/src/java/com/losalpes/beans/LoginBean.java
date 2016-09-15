@@ -18,6 +18,7 @@ import com.losalpes.excepciones.AutenticacionException;
 import com.losalpes.servicios.IServicioSeguridadMockLocal;
 import com.losalpes.servicios.ServicioSeguridadMock;
 import java.io.Serializable;
+import javax.ejb.Remove;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 
@@ -213,6 +214,7 @@ public class LoginBean implements Serializable
      * Realiza un logout de la sesión del cliente
      * @return login Devuelve a la página de inicio
      */
+    @Remove
     public String logout()
     {
         sesion=null;

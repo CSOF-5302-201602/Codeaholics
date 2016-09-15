@@ -17,6 +17,8 @@ import com.losalpes.entities.RegistroVenta;
 import com.losalpes.entities.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.ejb.EJB;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 /**
@@ -33,6 +35,7 @@ public class ServicioCarritoMock implements IServicioCarritoMockRemote, IServici
     /**
      * Interface con referencia al servicio de persistencia en el sistema
      */
+    @EJB
     private IServicioPersistenciaMockLocal persistencia;
 
     /**
@@ -60,7 +63,7 @@ public class ServicioCarritoMock implements IServicioCarritoMockRemote, IServici
     public ServicioCarritoMock()
     {
         inventario = new ArrayList<Mueble>();
-        persistencia=new ServicioPersistenciaMock();
+        //persistencia=new ServicioPersistenciaMock();
     }
 
     //-----------------------------------------------------------
@@ -116,6 +119,7 @@ public class ServicioCarritoMock implements IServicioCarritoMockRemote, IServici
      * @param usuario Usuario que realiza la compra
      */
     @Override
+    //@Remove
     public void comprar(Usuario usuario)
     {    
         Mueble mueble;
