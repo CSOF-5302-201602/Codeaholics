@@ -13,6 +13,7 @@
 package com.losalpes.entities;
 
 import java.util.ArrayList;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -32,11 +33,13 @@ public class Usuario
      * Identificador único del usuario
      */
     @Id
+    @Column(nullable = false)
     private long id;
     
     /**
      * Nombre del usuario
      */
+    @Column(nullable = false)
     private String login;
 
     /**
@@ -62,11 +65,13 @@ public class Usuario
     /**
      * Tipo de documento
      */
+    @Column(nullable = false)
     private TipoDocumento tipoDocumento;
 
     /**
      * Número del teléfono local
      */
+    @Column(nullable = false)    
     private long telefonoLocal;
 
     /*
@@ -77,11 +82,13 @@ public class Usuario
     /**
      * Ciudad de residencia del usuario
      */
+    @Column(nullable = false)
     private Ciudad ciudad;
 
     /**
      * Dirección de residencia del usuario
      */
+    @Column(nullable = false)
     private String direccion;
 
     /**
@@ -92,6 +99,7 @@ public class Usuario
     /**
      * Correo electrónico del usuario
      */
+    @Column(nullable = false)
     private String correo;
 
     /**
