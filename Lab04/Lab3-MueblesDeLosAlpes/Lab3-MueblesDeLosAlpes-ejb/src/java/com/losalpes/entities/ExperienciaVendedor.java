@@ -12,10 +12,15 @@
 
 package com.losalpes.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Clase que modela un ìtem de experiencia de vendedor.
  * 
  */
+@Entity
 public class ExperienciaVendedor
 {
 
@@ -26,6 +31,7 @@ public class ExperienciaVendedor
     /**
      * Identificador del item de experiencia.
      */
+    @Id @GeneratedValue
     private long id;
 
     /**
@@ -68,9 +74,8 @@ public class ExperienciaVendedor
      * @param descripcion Descripción de las funcionaes del cargo
      * @param ano Año de terminación del vínculo laboral
      */
-    public ExperienciaVendedor(long id, String nombreEmpesa, String cargo, String descripcion, int ano)
+    public ExperienciaVendedor(String nombreEmpesa, String cargo, String descripcion, int ano)
     {
-        this.id = id;
         this.nombreEmpesa = nombreEmpesa;
         this.cargo = cargo;
         this.descripcion = descripcion;

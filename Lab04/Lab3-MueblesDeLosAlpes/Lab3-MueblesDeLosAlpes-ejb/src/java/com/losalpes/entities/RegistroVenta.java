@@ -13,17 +13,27 @@
 package com.losalpes.entities;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Clase que modela un registro de venta realizado por un cliente
  * 
  */
+@Entity
 public class RegistroVenta
 {
 
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
+    
+    /**
+     * Identificador unico de la venta
+     */
+    @Id @GeneratedValue
+    private long id;
     
     /**
      * Fecha en la que se vendió el producto
@@ -63,6 +73,7 @@ public class RegistroVenta
 
     /**
      * Constructor de la clase con argumentos
+     * @param id Identificador del registro de la venta
      * @param fechaVenta Fecha en que se realizó la venta
      * @param producto Mueble adquirido
      * @param cantidad Cantidad adquirida
@@ -79,10 +90,21 @@ public class RegistroVenta
         this.comprador = comprador;
     }
 
+    public RegistroVenta(Date date, Mueble mueble, int cantidad, Object object, Usuario usuario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     //-----------------------------------------------------------
     // Getters y setters
     //-----------------------------------------------------------
 
+    /**
+     * Devuelve el identificador único del registro de venta
+     */
+    public long getId() {
+        return id;
+    }
+    
     /**
      * Devuelve la cantidad de producto vendido
      * @return cantidad Cantidad de producto vendido

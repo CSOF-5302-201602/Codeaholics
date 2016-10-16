@@ -12,17 +12,26 @@
 package com.losalpes.entities;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Clase que representa un país en el sistema
  * 
  */
+@Entity
 public class Pais
 {
 
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
+    /**
+     * Id
+     */
+    @Id @GeneratedValue
+    private long id;
     
     /**
      * Nombre del país
@@ -60,6 +69,14 @@ public class Pais
     // Getters y setters
     //-----------------------------------------------------------
 
+    /** 
+     * Devuelve el identificador único del pais
+     * @return id Identificador del pais
+     */
+    public long getId() {
+        return id;
+    }
+    
     /**
      * Devuele el nombre del país
      * @return nombre Nombre del país

@@ -12,20 +12,26 @@
 
 package com.losalpes.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Clase que representa la información de un mueble en el sistema
  * 
  */
+@Entity
 public class Mueble
 {
 
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
-
+    
     /**
      * Referencia que identifica el modelo del mueble en el sistema.
      */
+    @Id @GeneratedValue
     private long referencia;
 
     /**
@@ -97,7 +103,7 @@ public class Mueble
     //-----------------------------------------------------------
     // Getters y setters
     //-----------------------------------------------------------
-
+   
     /**
      * Devuelve la descripción del mueble
      * @return descripcion Descripción del mueble

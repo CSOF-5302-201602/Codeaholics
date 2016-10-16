@@ -12,10 +12,15 @@
 
 package com.losalpes.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * Clase que representa una ciudad en el sistema
  * 
  */
+@Entity
 public class Ciudad
 {
       
@@ -23,6 +28,20 @@ public class Ciudad
     // Atributos
     //-----------------------------------------------------------
 
+    /** Id de la ciudad
+     * 
+     */
+    @Id @GeneratedValue
+    private long id;
+    
+    /**
+     * Identificador de la ciudad
+     */
+    public long getId()
+    {
+        return id;
+    }
+    
     /**
      * Nombre de la ciudad
      */

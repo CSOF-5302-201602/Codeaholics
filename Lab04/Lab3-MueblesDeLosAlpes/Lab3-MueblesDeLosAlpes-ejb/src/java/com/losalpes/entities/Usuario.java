@@ -13,11 +13,13 @@
 package com.losalpes.entities;
 
 import java.util.ArrayList;
+import javax.persistence.Entity;
 
 /**
  * Clase que representa un usuario del sistema
  * 
  */
+@Entity
 public class Usuario
 {
 
@@ -25,6 +27,11 @@ public class Usuario
     // Atributos
     //-----------------------------------------------------------
 
+    /** 
+     * Identificador único del usuario
+     */
+    private long id;
+    
     /**
      * Nombre del usuario
      */
@@ -109,12 +116,14 @@ public class Usuario
 
     /**
      * Constructor de la clase con argumentos
+     * @id id Identificador del usuario
      * @param nombre Nombre del usuario
      * @param contraseña Constraseña del usuario
      * @param tipo Tipo de usuario
      */
-    public Usuario(String login, String contraseña, TipoUsuario tipoUsuario)
+    public Usuario(long id, String login, String contraseña, TipoUsuario tipoUsuario)
     {
+        this.id = id;
         this.login = login;
         this.contraseña = contraseña;
         this.tipoUsuario = tipoUsuario;
@@ -125,6 +134,21 @@ public class Usuario
     // Getters y setters
     //-----------------------------------------------------------
 
+    /**
+     * Devuelve el identificador único del usuario
+     * @return id
+     */
+    public long getIdentificacion() {
+        return id;
+    }
+    
+    /**
+     * modifica la identificación del usuario
+     */
+    public void setIdentificacion(long id) {
+        this.id = id;
+    }
+    
     /**
      * Devuelve el nombre de usuario
      * @return nombre Nombre del usuario
