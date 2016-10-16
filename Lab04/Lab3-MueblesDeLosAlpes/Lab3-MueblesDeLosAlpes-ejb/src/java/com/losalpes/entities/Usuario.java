@@ -14,6 +14,7 @@ package com.losalpes.entities;
 
 import java.util.ArrayList;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Clase que representa un usuario del sistema
@@ -30,6 +31,7 @@ public class Usuario
     /** 
      * Identificador único del usuario
      */
+    @Id
     private long id;
     
     /**
