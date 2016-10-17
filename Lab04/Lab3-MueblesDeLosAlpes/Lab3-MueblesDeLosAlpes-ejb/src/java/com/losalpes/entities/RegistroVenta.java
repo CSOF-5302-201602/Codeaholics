@@ -16,6 +16,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * Clase que modela un registro de venta realizado por un cliente
@@ -57,8 +58,9 @@ public class RegistroVenta
 
     /**
      * Usuario que compró el producto
-     */
-    private Usuario comprador;
+     */ 
+    @ManyToOne
+    protected Usuario comprador;
 
     //-----------------------------------------------------------
     // Constructor
