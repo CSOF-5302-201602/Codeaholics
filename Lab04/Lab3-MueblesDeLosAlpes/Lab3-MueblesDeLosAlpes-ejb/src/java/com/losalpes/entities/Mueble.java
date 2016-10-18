@@ -12,6 +12,7 @@
 
 package com.losalpes.entities;
 
+import com.sun.istack.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +39,7 @@ public class Mueble
     /**
      * Nombre del mueble.
      */
-    @Column(nullable = false)
+    @NotNull
     private String nombre;
 
     /**
@@ -49,7 +50,7 @@ public class Mueble
     /**
      * Tipo de mueble.
      */
-    @Column(nullable = false)
+    @NotNull
     private TipoMueble tipo;
 
     /**
