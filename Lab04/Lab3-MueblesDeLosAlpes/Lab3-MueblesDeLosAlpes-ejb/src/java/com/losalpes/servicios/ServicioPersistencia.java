@@ -8,30 +8,30 @@
  * Ejercicio: Muebles de los Alpes
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
-
 package com.losalpes.servicios;
 
 import com.losalpes.excepciones.OperacionInvalidaException;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceContext;
 
 /**
  * Implementación de los servicios de persistencia
  */
 @Stateless
-public class ServicioPersistencia implements IServicioPersistenciaMockLocal,IServicioPersistenciaMockRemote, Serializable {
+public class ServicioPersistencia implements IServicioPersistenciaMockLocal, IServicioPersistenciaMockRemote, Serializable {
 
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
-
-    
     /**
      * La entidad encargada de persistir en la base de datos
      */
-    //TODO
-
+    @PersistenceContext
+    EntityManager em;
     //-----------------------------------------------------------
     // Constructor
     //-----------------------------------------------------------
@@ -39,68 +39,100 @@ public class ServicioPersistencia implements IServicioPersistenciaMockLocal,ISer
     /**
      * Constructor de la clase. Inicializa los atributos.
      */
-    public ServicioPersistencia()
-    {
-        
+    public ServicioPersistencia() {
+
     }
 
     //-----------------------------------------------------------
     // Métodos
     //-----------------------------------------------------------
-    
     /**
      * Permite crear un objeto dentro de la persistencia del sistema.
-     * @param obj Objeto que representa la instancia de la entidad que se quiere crear.
+     *
+     * @param obj Objeto que representa la instancia de la entidad que se quiere
+     * crear.
      */
     @Override
-    public void create(Object obj) throws OperacionInvalidaException
-    {
-       //TODO
+    public void create(Object obj) throws OperacionInvalidaException {
+        try {
+
+            em.getTransaction().begin();
+            em.persist(obj);
+            em.getTransaction().commit();
+
+        } finally {
+
+            System.out.println("Ha fallado la transacción crear");
+        }
     }
 
     /**
      * Permite modificar un objeto dentro de la persistencia del sistema.
-     * @param obj Objeto que representa la instancia de la entidad que se quiere modificar.
+     *
+     * @param obj Objeto que representa la instancia de la entidad que se quiere
+     * modificar.
+     * @throws java.lang.Exception
      */
     @Override
-    public void update(Object obj)
-    {
-       //TODO
+    public void update(Object obj) {
+        try {
+
+            em.getTransaction().begin();
+            em.merge(obj);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+
+            String msg = e.getLocalizedMessage();
+            System.out.println(msg);
+        }
     }
 
     /**
      * Permite borrar un objeto dentro de la persistencia del sistema.
-     * @param obj Objeto que representa la instancia de la entidad que se quiere borrar.
+     *
+     * @param obj Objeto que representa la instancia de la entidad que se quiere
+     * borrar.
      */
     @Override
-    public void delete(Object obj) throws OperacionInvalidaException
-    {
-       //TODO
-
+    public void delete(Object obj) throws OperacionInvalidaException {
+        
+        try {
+            
+            em.getTransaction().begin();
+            em.remove(obj);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            
+            throw new OperacionInvalidaException("Error al borrar objeto"); 
+        }
+        
     }
 
     /**
-     * Retorna la lista de todos los elementos de una clase dada que se encuentran en el sistema.
+     * Retorna la lista de todos los elementos de una clase dada que se
+     * encuentran en el sistema.
+     *
      * @param c Clase cuyos objetos quieren encontrarse en el sistema.
-     * @return list Listado de todos los objetos de una clase dada que se encuentran en el sistema.
+     * @return list Listado de todos los objetos de una clase dada que se
+     * encuentran en el sistema.
      */
     @Override
-    public List findAll(Class c)
-    {
-        return null;
-        //return entityManager.createQuery("select O from " + c.getSimpleName() + " as O").getResultList();
+    public List findAll(Class c) {
+        //return null;
+        return em.createQuery("select O from " + c.getSimpleName() + " as O").getResultList();
     }
 
     /**
-     * Retorna la instancia de una entidad dado un identificador y la clase de la entidadi.
+     * Retorna la instancia de una entidad dado un identificador y la clase de
+     * la entidadi.
+     *
      * @param c Clase de la instancia que se quiere buscar.
      * @param id Identificador unico del objeto.
      * @return obj Resultado de la consulta.
      */
     @Override
-    public Object findById(Class c, Object id)
-    {
-        //TODO
-        return null;
+    public Object findById(Class c, Object id) {
+        
+        return em.find(c, id);
     }
 }
