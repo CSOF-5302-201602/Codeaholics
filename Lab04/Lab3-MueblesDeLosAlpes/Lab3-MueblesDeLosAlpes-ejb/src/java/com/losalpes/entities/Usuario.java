@@ -38,8 +38,7 @@ public class Usuario
     /** 
      * Identificador único del usuario
      */
-    @Id
-    @Column(nullable = false)
+
     private long id;
     
     /**
@@ -69,6 +68,8 @@ public class Usuario
     /**
      * Número de documento de identidad
      */
+    @Id
+    @Column(nullable = false)
     private long documento;
 
     /**
@@ -158,21 +159,6 @@ public class Usuario
     // Getters y setters
     //-----------------------------------------------------------
 
-    /**
-     * Devuelve el identificador único del usuario
-     * @return id
-     */
-    public long getIdentificacion() {
-        return id;
-    }
-    
-    /**
-     * modifica la identificación del usuario
-     */
-    public void setIdentificacion(long id) {
-        this.id = id;
-    }
-    
     /**
      * Devuelve el nombre de usuario
      * @return nombre Nombre del usuario
