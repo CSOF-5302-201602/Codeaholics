@@ -15,8 +15,11 @@ package com.losalpes.entities;
 import com.sun.istack.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  * Clase que representa la información de un mueble en el sistema
@@ -40,17 +43,20 @@ public class Mueble
      * Nombre del mueble.
      */
     @NotNull
+    @Column(length=100)
     private String nombre;
 
     /**
      * Descripción del mueble.
      */
+    @Column(length=200)
     private String descripcion;
 
     /**
      * Tipo de mueble.
      */
     @NotNull
+    @Enumerated(EnumType.STRING)
     private TipoMueble tipo;
 
     /**
@@ -61,6 +67,7 @@ public class Mueble
     /**
      * Nombre de la imágen
      */
+    @Column(length=100)
     private String imagen;
 
     /**
@@ -71,6 +78,7 @@ public class Mueble
     /**
      * Indica si el mueble fue seleccionado
      */
+    @Transient
     private boolean seleccion;
 
     //-----------------------------------------------------------

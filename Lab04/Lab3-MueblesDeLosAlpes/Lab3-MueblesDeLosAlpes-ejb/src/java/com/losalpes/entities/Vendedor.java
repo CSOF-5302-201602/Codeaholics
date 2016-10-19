@@ -13,9 +13,11 @@ package com.losalpes.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * Clase que modela un vendedor dentro del sistema.
@@ -38,16 +40,19 @@ public class Vendedor
     /**
      * Nombres del vendedor.
      */
+    @Column(length=50, nullable=false)
     private String nombres;
 
     /**
      * Apellidos del vendedor.
      */
+    @Column(length=50, nullable=false)
     private String apellidos;
 
     /**
      * Lista de ítems de experiencia del vendedor.
      */
+    @OneToMany
     private List<ExperienciaVendedor> experiencia;
 
     /**
@@ -63,11 +68,13 @@ public class Vendedor
     /**
      * Perfil de vendedor.
      */
+    @Column(length=50)
     private String perfil;
 
     /**
      * Foto del vendedor.
      */
+    @Column(length=100)
     private String foto;
 
     //-----------------------------------------------------------

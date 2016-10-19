@@ -12,6 +12,7 @@
 
 package com.losalpes.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -45,6 +46,7 @@ public class Ciudad
     /**
      * Nombre de la ciudad
      */
+    @Column(length = 100, nullable=false)
     private String nombre;
 
     /**

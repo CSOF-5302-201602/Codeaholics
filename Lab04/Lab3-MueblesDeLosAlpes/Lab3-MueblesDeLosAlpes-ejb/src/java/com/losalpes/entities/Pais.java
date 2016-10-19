@@ -15,6 +15,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * Clase que representa un país en el sistema
@@ -40,6 +41,7 @@ public class Pais
     /**
      * Ciudades que tiene el país
      */
+    @OneToMany
     private List<Ciudad> ciudades;
 
     //-----------------------------------------------------------

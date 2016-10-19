@@ -15,8 +15,13 @@ package com.losalpes.entities;
 import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 /**
  * Clase que representa un usuario del sistema
@@ -40,22 +45,25 @@ public class Usuario
     /**
      * Nombre del usuario
      */
-    @Column(nullable = false)
+    @Column(length=100, nullable = false)
     private String login;
 
     /**
      * Contraseña del usuario
      */
+    @Column(length=20, nullable = false)
     private String contraseña;
 
     /**
      * Tipo de usuario
      */
+    @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
 
     /**
      * Nombres y apellidos del usuario
      */
+    @Column(length=100)
     private String nombreCompleto;
 
     /**
@@ -67,6 +75,7 @@ public class Usuario
      * Tipo de documento
      */
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento;
 
     /**
@@ -84,28 +93,31 @@ public class Usuario
      * Ciudad de residencia del usuario
      */
     @Column(nullable = false)
+    @ManyToOne
     private Ciudad ciudad;
 
     /**
      * Dirección de residencia del usuario
      */
-    @Column(nullable = false)
+    @Column(length=100, nullable = false)
     private String direccion;
 
     /**
      * Profesión del usuario
      */
+    @Enumerated(EnumType.STRING)
     private Profesion profesion;
 
     /**
      * Correo electrónico del usuario
      */
-    @Column(nullable = false)
+    @Column(length=100, nullable = false)
     private String correo;
 
     /**
      * Indica si el mueble fue seleccionado
      */
+    @Transient
     private boolean seleccion;
 
     /**

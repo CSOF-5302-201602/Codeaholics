@@ -12,6 +12,7 @@
 
 package com.losalpes.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -37,21 +38,25 @@ public class ExperienciaVendedor
     /**
      * Nombre de la empresa que ceritifica la experiencia laboral.
      */
+    @Column(length=100, nullable=false)
     private String nombreEmpesa;
 
     /**
      * Cargo que el empleado ocupó en la empresa.
      */
+    @Column(length=100, nullable=false)
     private String cargo;
 
     /**
      * Descripción de las funciones del cargo.
      */
+    @Column(length=400)
     private String descripcion;
 
     /**
      * Año de terminación del vínculo laboral.
      */
+    @Column(nullable=false)
     private int ano;
 
     //-----------------------------------------------------------
