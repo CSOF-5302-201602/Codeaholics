@@ -31,7 +31,7 @@ public class ServicioPersistencia implements IServicioPersistenciaMockLocal, ISe
      * La entidad encargada de persistir en la base de datos
      */
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
     //-----------------------------------------------------------
     // Constructor
     //-----------------------------------------------------------
@@ -40,7 +40,7 @@ public class ServicioPersistencia implements IServicioPersistenciaMockLocal, ISe
      * Constructor de la clase. Inicializa los atributos.
      */
     public ServicioPersistencia() {
-
+        
     }
 
     //-----------------------------------------------------------
