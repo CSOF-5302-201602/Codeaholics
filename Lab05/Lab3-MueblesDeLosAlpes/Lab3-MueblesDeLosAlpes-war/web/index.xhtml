@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : index
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="titulo" value="Control de Accesos" />
+    <ui:define name="body">
+        <h:form>
+            <!-- Formulario de autenticación  -->
+            <h:panelGroup>
+                <f:facet name="header" >
+                    Administración del Catálogo
+                </f:facet>
+                <h:panelGrid width="100px" columns="1" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputLabel for="TxtName"
+                                   value="Nombre usuario" />
+                    <h:inputText id="TxtName"
+                                 size="20"
+                                 label="Nombre usuario"
+                                 maxlength="20"
+                                 value="#{loginBean.usuario}"
+                                 required="true">
+                        <f:validateLength minimum="1"/>
+                    </h:inputText>
+                    <h:message id="nameMsg" for="TxtName" errorClass="error" styleClass="error"/>
+                
+                    <h:outputLabel for="TxtPw"
+                                     value="Contraseña" />
+                    <h:inputSecret id="TxtPw"
+                                     maxlength="20"
+                                     size="20"
+                                     value="#{loginBean.contraseña}"
+                                     label="Contraseña"
+                                     required="true">
+                        <f:validateLength minimum="6" maximum="15" />
+                    </h:inputSecret>
+                    <h:message id="pwMsg" for="TxtPw" styleClass="error"/>
+                    
+                    <h:commandButton value="Ingresar" action="#{loginBean.ingresar}" type="submit" />
+                </h:panelGrid>
+                
+            </h:panelGroup>
+        </h:form>
+        
+        <!-- Formulario para realizar un registro -->
+        <h:form>
+            <h:panelGroup style="padding-top: 0px;padding-bottom: 10px">
+                <h:commandLink value="Registrarse" action="registro.xhtml"/>
+            </h:panelGroup>
+        </h:form>
+        
+        <h:form>
+            <p:dialog visible="#{loginBean.error}" header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
+                
+                <f:facet name="header">
+                    <h:outputText value="Error de ingreso"/>
+                </f:facet>
+                <h:panelGroup>
+
+                        <h:panelGrid cellpadding="0" columns="2" style="background-position: center"
+                                       cellspacing="10" styleClass="popupModalBody">
+                            <h:graphicImage url="./resources/img/graphics/error.png"/>
+                            <h:outputText
+                                value="#{loginBean.mensajeError}"/>
+                        </h:panelGrid>
+                        <h:panelGroup style="vertical-align: middle;background: transparent">
+
+                            <div align="center">
+                            <h:commandButton id="closeModal"
+                                               actionListener="#{loginBean.cerrarPanelError}"
+                                               value="Cerrar" style="z-index:2;"/>
+                            </div>
+                        </h:panelGroup>
+                </h:panelGroup>
+                                
+            </p:dialog>       
+        </h:form>
+        
+    </ui:define>
+</ui:composition>
