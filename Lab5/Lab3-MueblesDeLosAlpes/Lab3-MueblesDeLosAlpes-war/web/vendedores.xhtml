@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : vendedores
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:param name="titulo" value="Catálogo de muebles" />
+    <ui:define name="body">
+
+        <!-- Header del panel -->
+        <h:form>
+            <h:outputText id="linkHeader"
+                          value="Administración de vendedores" style="color:white"/>
+        </h:form>
+
+
+        <h:panelGroup>
+            <h:form>
+                <div align="right" style="padding-right: 10px">
+                    <h:commandButton style="background: transparent" image="./resources/img/pag/atras.png" action="menu.xhtml"/>
+                </div>
+            </h:form>
+            <h:form>
+                <p:accordionPanel>
+                    <p:tab title="Experiencia vendedor">
+                        <div class="ui-grid ui-grid-responsive">
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-6">
+                                    <p:outputLabel for="TxtNombreEmpresa"
+                                                   value="Nombre empresa"
+                                                   style="font-weight: bold"/>
+                                    <p:inputText id="TxtNombreEmpresa"
+                                                 size="20"
+                                                 maxlength="45"
+                                                 value="#{vendedorBean.experiencia.nombreEmpesa}"
+                                                 required="true"
+                                                 label="Nombre empresa">
+                                        <f:validateLength minimum="6"/>
+                                    </p:inputText>
+                                    <p:message id="descMsg" for="TxtNombreEmpresa" />
+                                </div>
+                                <div class="ui-grid-col-6">
+                                    <p:outputLabel for="TxtCargo"
+                                                   value="Cargo"
+                                                   style="font-weight: bold"/>
+                                    <p:inputText id="TxtCargo"
+                                                 size="20"
+                                                 maxlength="45"
+                                                 value="#{vendedorBean.experiencia.cargo}"
+                                                 required="true"
+                                                 label="Cargo">
+                                        <f:validateLength minimum="6"/>
+                                    </p:inputText>
+                                    <p:message id="imgMsg" for="TxtCargo" />    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui-grid ui-grid-responsive">
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-12">
+                                    <p:outputLabel for="TxtAño"
+                                                   value="Año"
+                                                   style="font-weight: bold"/>
+                                    <p:inputText id="TxtAño"
+                                                 size="20"
+                                                 maxlength="4"
+                                                 value="#{vendedorBean.experiencia.ano}"
+                                                 required="true">
+                                        <f:validateLength minimum="4"/>
+                                    </p:inputText>
+                                    <p:message id="anoMsg" for="TxtAño" />
+                                </div>
+                            </div>
+                        </div> 
+
+                    </p:tab>
+                </p:accordionPanel>
+                <h:commandButton value="Agregar" action="#{vendedorBean.agregarItemExperiencia}"/>
+            </h:form>
+        </h:panelGroup>
+
+        <h:panelGroup>
+            <h:form>
+                <p:accordionPanel>
+                    <p:tab title="Datos vendedor">
+                        <div class="ui-grid ui-grid-responsive">
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-6">
+                                    <p:outputLabel for="TxtNombre"
+                                                   value="Nombre(s)"
+                                                   style="font-weight: bold"/>
+                                    <p:inputText id="TxtNombre"
+                                                 maxlength="20"
+                                                 size="20"
+                                                 value="#{vendedorBean.vendedor.nombres}"
+                                                 required="true"
+                                                 label="Nombre(s)">
+                                        <f:validateLength minimum="1"/>
+                                    </p:inputText>
+                                    <p:message id="descMsg" for="TxtNombre" />
+                                </div>
+                                <div class="ui-grid-col-6">
+                                    <p:outputLabel for="TxtApellido"
+                                                   value="Apellidos"
+                                                   style="font-weight: bold"/>
+                                    <p:inputText id="TxtApellido"
+                                                 size="20"
+                                                 maxlength="7"
+                                                 value="#{vendedorBean.vendedor.apellidos}"
+                                                 required="true"
+                                                 label="Apellidos">
+                                        <f:validateLength minimum="7" maximum="15"/>
+                                    </p:inputText>
+                                    <p:message id="imgMsg" for="TxtApellido" />    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui-grid ui-grid-responsive">
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-6">
+                                    <p:outputLabel for="TxtSalario"
+                                                   value="Salario"
+                                                   style="font-weight: bold"/>
+                                    <p:inputText id="TxtSalario"
+                                                 size="20"
+                                                 maxlength="15"
+                                                 value="#{vendedorBean.vendedor.salario}"
+                                                 required="true"
+                                                 label="Salario">
+                                        <f:validateLength minimum="2" /> 
+                                    </p:inputText>
+                                    <p:message id="anoMsg" for="TxtSalario" />
+                                </div>
+                                <div class="ui-grid-col-6">
+                                    <p:outputLabel for="TxtVentas"
+                                                   value="Comisión"
+                                                   style="font-weight: bold"/>
+                                    <p:inputText id="TxtVentas"
+                                                 size="20"
+                                                 maxlength="10"
+                                                 value="#{vendedorBean.vendedor.comisionVentas}"
+                                                 required="true"
+                                                 label="Comisión">
+                                        <f:validateLength minimum="1"/>
+                                    </p:inputText>
+                                    <p:message id="ventasMsg" for="TxtVentas" />
+
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="ui-grid ui-grid-responsive">
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-12">
+                                    <p:outputLabel for="TxtPerfil"
+                                                   value="Perfil"
+                                                   style="font-weight: bold"/>
+                                    <p:inputTextarea id="TxtPerfil"
+                                                     rows="4"
+                                                     style="width: 125px"
+                                                     value="#{vendedorBean.vendedor.perfil}"
+                                                     required="true"
+                                                     label="Perfil">
+                                        <f:validateLength minimum="5"/>
+                                    </p:inputTextarea>
+                                    <p:message id="perfilMsg" for="TxtPerfil" />
+                                </div>
+
+                            </div>
+                        </div>    
+                    </p:tab>
+                </p:accordionPanel>
+                <h:commandButton value="Agregar vendedor" action="#{vendedorBean.agregarVendedor}"/>
+            </h:form>
+        </h:panelGroup>
+
+        <h:form>
+            <h:panelGroup>
+                <!-- Se crea una tabla donde se presentan los vendedores del sistema -->
+                <p:dataList value="#{vendedorBean.vendedores}"  var="employee" paginator="true" rows="5">
+                    <f:facet name="header" >
+                        Datos de los vendedores
+                    </f:facet>
+
+                    <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                        <h:graphicImage width="128" height="128" style="float:right"                    
+                        value="./resources/img/pag/#{employee.foto}.png" />
+                        
+                        <p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText value="Identificación:" />
+                                <h:outputText value="#{employee.identificacion}" style="font-weight: bold"/>
+                                
+                                <h:outputText value="Perfil:" />
+                                <h:outputText value="#{employee.perfil}" style="font-weight: bold"/>
+
+                                <h:outputText value="Salario: $ " />
+                                <h:outputText value="#{employee.salario}" style="font-weight: bold"/>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                    </h:panelGrid>
+                    <center>
+                        <h:commandButton id="DDRtn" action="#{vendedorBean.eliminarVendedor}"
+                                         value="Eliminar"  >
+                            <f:param name="vendedorId" value="#{employee.identificacion}"/>
+                        
+                        </h:commandButton> 
+                    </center>
+                </p:dataList>
+
+
+            </h:panelGroup>     
+        </h:form>
+    </ui:define>
+
+</ui:composition>

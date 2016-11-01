@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : menu
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:param name="titulo" value="Control de Acceso" />
+    <ui:define name="body">
+
+        <h:outputText id="linkHeader"
+                                    value="Administración del sistema" style="color:white"/>
+
+        <div align="right">
+            <h:panelGroup>
+                <h:form>
+                    <h:commandButton  action="#{loginBean.logout}"  style="background: transparent;
+                                        padding-right: 12px" image="./resources/img/pag/logOff.png"
+                                        title="Cerrar sesión"/>
+                </h:form>
+            </h:panelGroup>
+        </div>
+
+        <h:panelGroup style="padding-bottom: 20px">
+            <center>
+                <h:form>
+                    <table>
+                        <tr>
+                            <td width="180">
+
+                                <h:commandButton style="background: transparent"
+                                                   image="./resources/img/pag/vendedores.png"
+                                                   title="Vendedores"
+                                                   action="vendedores.xhtml"/>
+                            </td>
+                            <td width="180">
+
+                                <h:commandButton style="background: transparent"
+                                                   image="./resources/img/pag/muebles.png"
+                                                   title="Muebles"
+                                                   action="catalogo.xhtml"/>
+                                                   
+                            </td>
+                            <td width="180">
+                                <h:commandButton style="background: transparent"
+                                                   image="./resources/img/pag/clientes.png"
+                                                   title="Clientes"
+                                                   action="clientes.xhtml"/>
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
+            </center>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>

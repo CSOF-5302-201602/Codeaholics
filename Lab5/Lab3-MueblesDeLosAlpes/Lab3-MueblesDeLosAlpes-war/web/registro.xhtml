@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : registro
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="titulo" value="Catálogo de muebles" />
+    <ui:define name="body">
+        <h:form>
+            Formulario de registro  
+            <p:accordionPanel>
+                <p:tab title="Registro de usuario">
+                    <div class="ui-grid ui-grid-responsive">
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-6">
+                                <p:outputLabel for="TxtID" value="Documento" style="font-weight: bold" />
+                                <p:inputText value="#{registroBean.usuario.documento}" required="true"
+                                             id="TxtID">
+                                    <f:validateLength minimum="5" />
+                                </p:inputText> 
+                                <p:message for="TxtID" display="text" />
+                            </div>
+                            <div class="ui-grid-col-6">
+                                <h:selectOneMenu label="Tipo de Documento" 
+                                                 value="#{registroBean.usuario.tipoDocumento}">
+                                    <f:selectItems value="#{registroBean.tiposDocumentos}" />
+                                </h:selectOneMenu>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui-grid ui-grid-responsive">
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-12">
+                                <p:outputLabel for="TxtName"
+                                               value="Nombre Completo"
+                                               style="font-weight: bold"/>
+                                <p:inputText id="TxtName" size="90"
+                                             maxlength="45"
+                                             value="#{registroBean.usuario.nombreCompleto}"
+                                             required="true"
+                                             title="Nombre">
+                                    <f:validateLength minimum="10"/>
+                                </p:inputText>
+                                <p:message for="TxtName" display="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui-grid ui-grid-responsive">
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-6">
+                                <p:outputLabel for="TxtTelLocal"
+                                               value="Teléfono local"
+                                               style="font-weight: bold"/>
+                                <p:inputText id="TxtTelLocal"
+                                             size="20"
+                                             maxlength="7"
+                                             value="#{registroBean.usuario.telefonoLocal}"
+                                             required="true"
+                                             label="Teléfono local">
+                                    <f:validateLength minimum="7" maximum="7"/>
+                                </p:inputText>
+                                <p:message id="messageLocal" for="TxtTelLocal"/>
+                            </div>
+                            <div class="ui-grid-col-6">
+                                <p:outputLabel for="TxtTelCel"
+                                               value="Teléfono celular"
+                                               style="font-weight: bold"/>
+                                <p:inputText id="TxtTelCel"
+                                             size="20"
+                                             maxlength="10"
+                                             value="#{registroBean.usuario.telefonoCelular}"
+                                             required="true"
+                                             label="Teléfono celular">
+                                    <f:validateLength minimum="10" maximum="10"/>
+                                </p:inputText>
+                                <p:message id="messageCel" for="TxtTelCel"/>
+                            </div>
+                        </div>
+                    </div> 
+
+                    <div class="ui-grid ui-grid-responsive">
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-6">
+                                <p:outputLabel for="TxtPais"
+                                               value="País"
+                                               style="font-weight: bold"/>
+                                <p:selectOneMenu id="TxtPais" 
+                                                 value="#{registroBean.pais}" 
+                                                 valueChangeListener="#{registroBean.cambioPais}"
+                                                 label="País">
+                                    <f:selectItems value="#{registroBean.paises}" />
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="ui-grid-col-6">
+                                <p:outputLabel for="TxtCity"
+                                               value="Ciudad"
+                                               style="font-weight: bold"/>
+                                <p:selectOneMenu id="TxtCity" 
+                                                 value="#{registroBean.ciudad}"
+                                                 label="Ciudad">
+                                    <f:selectItems value="#{registroBean.ciudades}" />
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui-grid ui-grid-responsive">
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-6">
+                                <p:outputLabel for="TxtDir"
+                                               value="Dirección"
+                                               style="font-weight: bold"/>
+                                <p:inputText id="TxtDir"
+                                             size="20"
+                                             maxlength="45"
+                                             value="#{registroBean.usuario.direccion}"
+                                             required="true"
+                                             label="Dirección">
+                                    <f:validateLength minimum="6"/>
+                                </p:inputText>
+                                <p:message id="messageDir" for="TxtDir"/>
+                            </div>
+                            <div class="ui-grid-col-6">
+                                <p:outputLabel for="TxtJob"
+                                               value="Profesión"
+                                               style="font-weight: bold"/>
+                                <p:selectOneMenu id="TxtJob" 
+                                                 value="#{registroBean.usuario.profesion}"
+                                                 label="Profesión">
+                                    <f:selectItems value="#{registroBean.profesiones}" />
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui-grid ui-grid-responsive">
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-6">
+                                <p:outputLabel for="TxtEmail"
+                                               value="Correo electrónico"
+                                               style="font-weight: bold"/>
+                                <p:inputText id="TxtEmail"
+                                             size="20"
+                                             maxlength="35"
+                                             value="#{registroBean.usuario.correo}"
+                                             required="true"
+                                             label="Correo electrónico">
+                                    <f:validateLength minimum="10"/>
+                                </p:inputText>
+                                <p:message id="messageEmail" for="TxtEmail"/>
+                            </div>
+                            <div class="ui-grid-col-6">
+                                <p:outputLabel for="TxtLog"
+                                               value="Login"
+                                               style="font-weight: bold"/>
+                                <p:inputText id="TxtLog"
+                                             size="20"
+                                             maxlength="15"
+                                             value="#{registroBean.usuario.login}"
+                                             required="true"
+                                             label="Login">
+                                    <f:validateLength minimum="6"/>
+                                </p:inputText>
+                                <p:message id="messageLog" for="TxtLog"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ui-grid ui-grid-responsive">
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-12">
+                                <p:outputLabel for="TxtPwd"
+                                               value="Contraseña"
+                                               style="font-weight: bold"/>
+                                <p:password id="TxtPwd"
+                                            maxlength="20"
+                                            size="20"
+                                            value="#{registroBean.usuario.contraseña}"
+                                            label="Contraseña"
+                                            required="true">
+                                    <f:validateLength minimum="6" maximum="15" />
+                                </p:password>
+                                <p:message id="messagePwd" for="TxtPwd"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:tab>
+            </p:accordionPanel>
+
+            <h:commandButton value="Aceptar" action="#{registroBean.registrarUsuario}"/>
+        </h:form>
+        <h:panelGroup style="padding-left: 80px;background-color: white">
+                            <h:graphicImage url="./resources/img/pag/newUser.png" title="Nuevo usuario" width="256" height="256"/>
+        </h:panelGroup>
+
+        <!-- Formulario para realizar un registro -->
+        <h:form>
+            <p:dialog visible="#{registroBean.mostrarVentana}" header="Modal Dialog" widgetVar="dlg2" modal="true" height="100">
+
+                <f:facet name="header">
+                    <h:outputText value="Error de ingreso"/>
+                </f:facet>
+                <h:panelGroup>
+
+                    <h:panelGrid cellpadding="0" columns="2" style="background-position: center"
+                                 cellspacing="10" styleClass="popupModalBody">
+                        <h:graphicImage url="./resources/img/graphics/error.png"/>
+                        <h:outputText
+                            value="#{registroBean.mensaje}"/>
+                    </h:panelGrid>
+                    <h:panelGroup style="vertical-align: middle;background: transparent">
+
+                        <div align="center">
+                            <h:commandButton id="closeModal"
+                                             actionListener="#{registroBean.cerrarVentana}"
+                                             value="Cerrar" style="z-index:2;"/>
+                        </div>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+            </p:dialog>       
+        </h:form>
+
+    </ui:define>
+</ui:composition>
