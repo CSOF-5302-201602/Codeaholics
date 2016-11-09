@@ -12,13 +12,24 @@
 package com.losalpes.servicios;
 
 import com.losalpes.entities.Mueble;
+import com.losalpes.entities.Promocion;
 import com.losalpes.excepciones.OperacionInvalidaException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
 
 /**
  * Implementacion de los servicios del catálogo de muebles que se le prestan al sistema.
@@ -30,6 +41,12 @@ public class ServicioCatalogoMock implements IServicioCatalogoMockRemote,IServic
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
+    
+    @Resource(mappedName = "jms/__defaultConnectionFactory")
+    private ConnectionFactory connectionFactory;
+
+    @Resource(mappedName = "jms/addPromocion")
+    private Topic topic;
 
     /**
      * Interface con referencia al servicio de persistencia en el sistema
@@ -120,4 +137,42 @@ public class ServicioCatalogoMock implements IServicioCatalogoMockRemote,IServic
         return persistencia.findAll(Mueble.class);
     }
 
+    @Override
+    public void AgregarPromocion(Promocion promocion) throws JMSException {
+
+        Connection connection = connectionFactory.createConnection();
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        MessageProducer messageProducer = session.createProducer((Destination) topic);
+        try {
+            Message msg =CrearPromicionMensaje(session, promocion);
+            messageProducer.send(msg);
+            Logger.getLogger(ServicioCatalogoMock.class.getName()).log(Level.INFO,
+           "ServicioCatalogoMock: Se ha enviado la notificación para agregar promocion \n");
+        } catch (JMSException ex) {
+            Logger.getLogger(ServicioVendedoresMock.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (session != null) {
+                try {
+                    session.close();
+                } catch (JMSException e) {
+                    Logger.getLogger(this.getClass().getName()).log(Level.WARNING, "Error cerrando la"
+                            + " sesión", e);
+                }
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
+
+    private Message CrearPromicionMensaje(Session session, Promocion promocion) throws JMSException {
+        String msg = "fechaInicio: " + promocion.getFechaInicio() + "\n";
+        msg += "fechaFin: " + promocion.getFechaFin() + "\n";
+        msg += "descipcion: " + promocion.getDescripcion() + "\n";
+        TextMessage tm = session.createTextMessage();
+        tm.setText(msg);
+        return tm;
+    }
+
+    
 }

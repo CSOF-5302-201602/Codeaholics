@@ -13,8 +13,10 @@
 package com.losalpes.servicios;
 
 import com.losalpes.entities.Mueble;
+import com.losalpes.entities.Promocion;
 import java.util.List;
 import javax.ejb.Remote;
+import javax.jms.JMSException;
 
 
 /**
@@ -49,4 +51,5 @@ public interface IServicioCatalogoMockRemote
      */
     public void removerEjemplarMueble(long id);
     
+     public void AgregarPromocion(Promocion promocion) throws JMSException;
 }

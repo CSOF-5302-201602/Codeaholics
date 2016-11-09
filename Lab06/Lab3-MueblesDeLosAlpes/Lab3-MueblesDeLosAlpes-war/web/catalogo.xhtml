@@ -19,6 +19,7 @@
         </h:form>
         <h:outputText id="linkHeader"
                           value="Administración de Muebles" style="color:white"/>
+        <h:commandButton value="Promociones" action="promociones.xhtml" />
         <p:fieldset legend="Muebles del Sistema">
         <h:form>
             <!-- Panel para agregar un nuevo mueble -->
@@ -103,6 +104,8 @@
 
                 <h:commandButton value="Agregar" action="#{catalogoBean.agregarMueble}" />
                 <h:commandButton value="Nuevo" action="#{catalogoBean.limpiar}" />
+                
+                
             </h:panelGroup>
             
         </h:form>

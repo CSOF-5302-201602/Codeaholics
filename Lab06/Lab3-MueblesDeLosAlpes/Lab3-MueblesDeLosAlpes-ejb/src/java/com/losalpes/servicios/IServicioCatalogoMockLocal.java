@@ -13,8 +13,10 @@
 package com.losalpes.servicios;
 
 import com.losalpes.entities.Mueble;
+import com.losalpes.entities.Promocion;
 import java.util.List;
 import javax.ejb.Local;
+import javax.jms.JMSException;
 
 /**
  * Contrato funcional de los servicios que se le prestan al catálogo
@@ -48,4 +50,5 @@ public interface IServicioCatalogoMockLocal
      */
     public void removerEjemplarMueble(long id);
 
+     public void AgregarPromocion(Promocion promocion) throws JMSException;
 }

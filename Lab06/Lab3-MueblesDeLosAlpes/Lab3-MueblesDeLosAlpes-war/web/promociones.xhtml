@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : vendedores
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:param name="titulo" value="Catálogo de muebles" />
+    <ui:define name="body">
+
+        <!-- Header del panel -->
+        <h:form>
+            <h:outputText id="linkHeader"
+                          value="Crear Promociones" style="color:white"/>
+        </h:form>
+
+
+        <h:panelGroup>
+            <h:form>
+                <div align="right" style="padding-right: 10px">
+                    <h:commandButton style="background: transparent" image="./resources/img/pag/atras.png" action="menu.xhtml"/>
+                </div>
+            </h:form>
+
+            <h:form>
+                <div class="ui-grid ui-grid-responsive">
+                    <h1>Agregar Promoción</h1>
+                    <div class="ui-grid-row">
+                        <div class="ui-grid-col-6">
+                            <p:outputLabel for="fechaInicio" value="Fecha Inicio: " style="font-weight: bold"/>
+                            <p:calendar id="fechaInicio"  pattern="dd-MM-yyyy" mask="true" required="true" value="#{promocionBean.promocion.fechaInicio}" />
+                        </div>
+                        <div class="ui-grid-col-6">
+                            <p:outputLabel for="fechaFin" value="Fecha Fin: " style="font-weight: bold" />
+                            <p:calendar id="fechaFin"  pattern="dd-MM-yyyy" mask="true" required="true" value="#{promocionBean.promocion.fechaFin}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-grid ui-grid-responsive">
+                    <div class="ui-grid-row">
+                        <div class="ui-grid-col-12">
+                            <p:outputLabel for="descripcion" value="Descripcion: "  style="font-weight: bold"/>
+                            <p:inputTextarea rows="10" id="descripcion" required="true" value="#{promocionBean.promocion.descripcion}" cols="50" queryDelay="750" minQueryLength="4" />
+                        </div>
+                    </div>
+                </div> 
+
+                <p:commandButton value="Agregar" actionListener="#{promocionBean.AgregarPromocion()}"/>
+            </h:form>
+        </h:panelGroup>
+    </ui:define>
+
+</ui:composition>
