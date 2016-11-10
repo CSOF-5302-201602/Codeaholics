@@ -40,7 +40,7 @@ public class ServicioVendedoresMock implements IServicioVendedoresMockRemote, IS
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
-    @Resource(mappedName ="jms/__defaultConnectionFactory")
+    @Resource(mappedName ="jms/cambioDeCargoTopicFactory")
     private ConnectionFactory connectionFactory;
 
     @Resource(mappedName = "jms/cambioDeCargoTopic")

@@ -42,7 +42,7 @@ public class ServicioCatalogoMock implements IServicioCatalogoMockRemote,IServic
     // Atributos
     //-----------------------------------------------------------
     
-    @Resource(mappedName = "jms/__defaultConnectionFactory")
+    @Resource(mappedName = "jms/addPromocionFactory")
     private ConnectionFactory connectionFactory;
 
     @Resource(mappedName = "jms/addPromocion")
